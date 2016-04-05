@@ -6,4 +6,4 @@ build/
 dist/
 
 # authentication keys
-server/auth/client_secret.js
+server/auth/super_secret.js
