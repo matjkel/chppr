@@ -16,7 +16,7 @@ var flash    = require('connect-flash'); // messages stored in session
 
 var Posts = require('./../client/models/posts');
 var Users = require('./../client/models/users');
-
+var passportConfig = require('./config/passport.js'); // this is the passport configs!
 var routes = express.Router()
 var app = express()
 
@@ -57,6 +57,8 @@ app.get('/auth/twitter/callback',
             failureRedirect : '/'
         }));
 
+passportConfig(); // try to use the stuff in this folder
+
 // route to middleware to make sure user is logged in
 function isLoggedIn(req, res, next) {
 
@@ -67,10 +69,6 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to home
 	res.redirect('/');
 }
-
-
-
-
 
 
 // ---------- Routes Start Here ------------- //
