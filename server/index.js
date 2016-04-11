@@ -38,6 +38,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Mount our main router
 app.use('/', routes)
 
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' })); // to get email from facebook
+
+    // handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
+            failureRedirect : '/'
+        }));
+
+	 // route for twitter authentication and login
+app.get('/auth/twitter', passport.authenticate('twitter'));
+
+    // handle the callback after twitter has authenticated the user
+app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
+            failureRedirect : '/'
+        }));
+
+// route to middleware to make sure user is logged in
+function isLoggedIn(req, res, next) {
+
+	// if user is logged in - 
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to home
+	res.redirect('/');
+}
+
+
+
 
 
 
