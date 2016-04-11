@@ -38,37 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Mount our main router
 app.use('/', routes)
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' })); // to get email from facebook
-
-    // handle the callback after facebook has authenticated the user
-app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
-            failureRedirect : '/'
-        }));
-
-	 // route for twitter authentication and login
-app.get('/auth/twitter', passport.authenticate('twitter'));
-
-    // handle the callback after twitter has authenticated the user
-app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
-            failureRedirect : '/'
-        }));
-
 passportConfig(); // try to use the stuff in this folder
-
-// route to middleware to make sure user is logged in
-function isLoggedIn(req, res, next) {
-
-	// if user is logged in - 
-	if (req.isAuthenticated())
-		return next();
-
-	// if they aren't redirect them to home
-	res.redirect('/');
-}
 
 
 // ---------- Routes Start Here ------------- //
@@ -167,6 +137,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // route for passport
+//require('./models/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./models/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // Static assets (html, etc.)

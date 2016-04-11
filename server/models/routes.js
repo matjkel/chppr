@@ -5,7 +5,7 @@ var router = express.Router();
 
 // This is how it was hooked up originally - if it helps while we migrate to react style
 
-// module.exports = function (app, passport){
+module.exports = function (app, passport){
 	// get homepage
 	// app.get('/', function(req, res){
 	// 	res.render('index.ejs');
@@ -40,41 +40,39 @@ var router = express.Router();
 	// });
 
     // send to facebook for authentication 
-
-    // MOVED TO INDEX.JS
-//     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' })); // to get email from facebook
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' })); // to get email from facebook
 
 //     // handle the callback after facebook has authenticated the user
-//     app.get('/auth/facebook/callback',
-//         passport.authenticate('facebook', {
-//             successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
-//             failureRedirect : '/'
-//         }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
+            failureRedirect : '/'
+        }));
 
 // 	 // route for twitter authentication and login
-//     app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter', passport.authenticate('twitter'));
 
 //     // handle the callback after twitter has authenticated the user
-//     app.get('/auth/twitter/callback',
-//         passport.authenticate('twitter', {
-//             successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
-//             failureRedirect : '/'
-//         }));
+    app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect : 'https://yumsnap2.herokuapp.com/dashboard',
+            failureRedirect : '/'
+        }));
 
-//  return router; //? need ?
-// }
+ return router; //? need ?
+}
 
 
 // // route to middleware to make sure user is logged in
-// function isLoggedIn(req, res, next) {
+function isLoggedIn(req, res, next) {
 
-// 	// if user is logged in - 
-// 	if (req.isAuthenticated())
-// 		return next();
+	// if user is logged in - 
+	if (req.isAuthenticated())
+		return next();
 
-// 	// if they aren't redirect them to home
-// 	res.redirect('/');
-// }
+	// if they aren't redirect them to home
+	res.redirect('/');
+}
 
 
 
