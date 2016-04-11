@@ -45,7 +45,7 @@ app.use('/', routes)
 
 
 //Login route, default route
-routes.get('/', function(req, res) {
+routes.get('/login', function(req, res) {
 	res.sendFile(assetFolder + '/login.html')
 })
 
@@ -63,11 +63,33 @@ routes.get('/feed', function (req, res) {
 })
 
 //get endpoint to serve up index.html
-routes.get('/dashboard', function (req, res) {
+routes.get('/', function (req, res) {
 	res.sendFile(assetFolder + '/index.html')
 })
 
-routes.get('/pictures/')
+//get endpoint for json obj for users 
+routes.get('/users', function (req, res) {
+	Users.getUsers()
+	.then(function(users){
+		res.status(201).send(users);
+	})
+	.catch(function (err) {
+				console.log('Error getting users: ', err);
+				return res.status(404).send(err);
+	})
+})
+
+//get endpoint for json obj for categories 
+routes.get('/categories', function (req, res) {
+	Users.getCategories()
+	.then(function(categories){
+		res.status(201).send(categories);
+	})
+	.catch(function (err) {
+				console.log('Error getting categories: ', err);
+				return res.status(404).send(err);
+	})
+})
 
 //post endpoint for user feed
 routes.post('/feed', function(req, res) {

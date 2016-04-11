@@ -22,6 +22,8 @@ class Layout extends React.Component {
       noSpice: false,
       category: null,
       cardData: [],
+      userData: [],
+      categoryData: [],
       showAdd: false,
       showFavs: false,
       dishName: '',
@@ -36,6 +38,8 @@ class Layout extends React.Component {
     };
 
     this.getCardData();
+    this.getUserData();
+    this.getCategoryData();
   }
 
   stateToggle(event) {
@@ -156,6 +160,8 @@ class Layout extends React.Component {
     .catch(function(err) {
       console.log('something went wrong getting data', err);
     });
+
+
         /*
     $.ajax({
       url: '/feed',
@@ -170,6 +176,40 @@ class Layout extends React.Component {
     
     });
     */
+  }
+
+  getUserData(){
+    // TODO - Replace this with a database call
+    var that = this;
+
+    fetch('http://localhost:4000/users')
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(json) {
+      console.log('got this json', json);
+      that.setState({userData: json})
+    })
+    .catch(function(err) {
+      console.log('something went wrong getting users', err);
+    });
+  }
+
+  getCategoryData(){
+    // TODO - Replace this with a database call
+    var that = this;
+
+    fetch('http://localhost:4000/categories')
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(json) {
+      console.log('got this json', json);
+      that.setState({categoryData: json})
+    })
+    .catch(function(err) {
+      console.log('something went wrong getting categories', err);
+    });
   }
 
   render() {
@@ -211,6 +251,8 @@ class Layout extends React.Component {
           boolNoSpice={this.state.noSpice}
           cardData={this.state.cardData}
           category={this.state.category}
+          userData={this.state.userData}
+          categoryData={this.state.categoryData}
         />
       </div>
     );

@@ -46,5 +46,21 @@ Users.categories = function (incomingAttrs) {
     });
 };
 
+Users.getUsers = function () { 
+  return db.select('*').from('users')
+    .then(function (result) {
+      // Prepare new user for outside world
+      return result;
+    });
+};
+
+Users.getCategories = function () { 
+  return db.select('*').from('categories')
+    .then(function (result) {
+      // Prepare new user for outside world
+      return result;
+    });
+};
+
 
 
