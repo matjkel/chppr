@@ -9,6 +9,15 @@ console.log('at start of migration')
 			table.string('password')
 		}),
 		
+	//Create Sessions Table
+    knex.schema.createTable('session', function(table) {
+      table.increments('id').primary();
+      table.string('sess');
+      table.string('sid');
+      table.timestamp('expire');
+    }),
+
+
 		//categories table
 		knex.schema.createTable('categories', function(table){
 			table.increments('cid').primary();

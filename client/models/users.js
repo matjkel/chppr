@@ -46,5 +46,12 @@ Users.categories = function (incomingAttrs) {
     });
 };
 
-
+// for passport 
+Users.getUser = function(reqObj) {
+  return db.select().from("yumsnap")
+         .where('user.facebookId', '=', reqObj.facebookId)
+         .then(function(rows) {
+         return rows[0];
+     });
+    }
 

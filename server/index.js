@@ -1,12 +1,12 @@
 //var browserify = require('browserify-middleware')
 var express = require('express')
 var webpack = require ('webpack');
-var webpackDevMiddleware = require ('webpack-dev-middleware')  
+var webpackDevMiddleware = require ('webpack-dev-middleware'); 
 //var webpackHotMiddleware = require ('webpack-hot-middleware')  
-var config = require( './../webpack.config.js')
-var compiler = webpack(config)  
+var config = require( './../webpack.config.js');
+var compiler = webpack(config);
 
-var Path = require('path')
+var Path = require('path');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
@@ -17,8 +17,8 @@ var flash    = require('connect-flash'); // messages stored in session
 var Posts = require('./../client/models/posts');
 var Users = require('./../client/models/users');
 var passportConfig = require('./config/passport.js'); // this is the passport configs!
-var routes = express.Router()
-var app = express()
+var routes = express.Router();
+var app = express();
 
 
 app.use(webpackDevMiddleware(compiler, {  
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Mount our main router
 app.use('/', routes)
 
-passportConfig(); // try to use the stuff in this folder
+passportConfig(app, express); // try to use the stuff in this folder
 
 
 // ---------- Routes Start Here ------------- //
@@ -129,12 +129,6 @@ routes.post('/login', function (req, res) {
 	})
 })
 
-
-// required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
 
 // route for passport
 //require('./models/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

@@ -1,6 +1,8 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
-
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var users = require('../../client/models/users.js')
 // ****************
 // load up the user model (user schema)
 var User = require('../models/user.js');
@@ -9,23 +11,43 @@ var User = require('../models/user.js');
 var configAuth = require('./auth');
 
     // expose this function to our app using module.exports
-    module.exports = function(passport) {
+    //module.exports = function(passport) {
+ module.exports = function(app, express) {
      // required for persistent login sessions : passport needs to serialize and unserialize users out of session
+// required for passport
+app.use(session({ 
+  store: new pgSession({
+         pg : pg,                                 
+         conString : 'postgresql://localhost/', 
+         tableName: 'session'             
+  }),
+secret: 'ilovescotchscotchyscotchscotch' 
+})); // session secret
 
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(cookieParser('banana'));
         // used to serialize the user for the session
         passport.serializeUser(function(user, done) {
-            done(null, user.id);
+            done(null, user.facebookId);
         });
 
         // used to deserialize the user
         passport.deserializeUser(function(id, done) {
-            // User.findById(id, function(err, user) {
-            //     done(err, user);
-            // });
-    // PASS IN DONE &  NULL ONLY
-        done(null, id);
 
+          console.log('deserial Obj:', id);
+
+          return Users.getUser({facebookId:id})
+                .then(function(user){
+                  console.log(user);
+                  return done(null,user);
+                })
+                .catch(function(err){
+                  console.error(err)
+                })
         });
+
 
     // FACEBOOK
         passport.use(new FacebookStrategy({
@@ -147,7 +169,7 @@ var configAuth = require('./auth');
        })); 
         // close twitter strategy
 
-//}; // close entire exports FN? sublime highlights this as extra.
+}; // close entire exports FN? sublime highlights this as extra.
 
 
 
