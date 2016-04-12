@@ -11,14 +11,22 @@ var Users = module.exports
 //}
 
 Users.create = function (incomingAttrs) {	
-	var attrs = Object.assign({}, incomingAttrs)
+ // var attrs = Object.assign({}, incomingAttrs)
 	
-	return db('users').insert(attrs)
+	return db('users').insert(incomingAttrs)
     .then(function (result) {
       // Prepare new user for outside world
       return result[0];
     });
 };
+
+
+Users.addAuth = function (token){
+	return db('token').insert(token)
+	.then(function (result) {
+		return result[0]
+	})
+}
 
 
 Users.verify = function (username, password) {
