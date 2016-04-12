@@ -10,7 +10,6 @@ import {cardStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} fr
 
 export default class DishCard extends React.Component {
   render() {
-    console.log("ALL DATA:", this.props.data);
     return (
       <div className="cardWrapper col-sm-6 col-lg-4" style={cardWrapperStyle}>
         <Card
