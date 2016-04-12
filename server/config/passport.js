@@ -109,10 +109,10 @@ module.exports = function(app, express) {
                         } else {
                             // set all of the facebook information in our user model
                             var userProfile = {
-                                facebook_id = profile.id; // set the users facebook id                   
-                                token = token; // we will save the token that facebook provides to the user                    
-                                username = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                                email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                                facebook_id = profile.id, // set the users facebook id                   
+                                token = token, // we will save the token that facebook provides to the user                    
+                                username = profile.name.givenName + ' ' + profile.name.familyName, // look at the passport user profile to see how names are returned
+                                email = profile.emails[0].value // facebook can return multiple emails so we'll take the first
                             }
 
                             return Users.createUser(userProfile)
