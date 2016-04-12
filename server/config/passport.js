@@ -2,7 +2,9 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var users = require('../../client/models/users.js')
+var users = require('../../client/models/users.js');
+var pg = require('pg');
+var pgSession = require('connect-pg-simple')(session);
     // ****************
     // load up the user model (user schema)
     //var User = require('../models/user.js');
