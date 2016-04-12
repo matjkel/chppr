@@ -6,35 +6,10 @@ import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
+import {cardStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} from '../inlineStyles';
 
 export default class DishCard extends React.Component {
-
   render() {
-
-    const cardStyle = {
-      padding: "30px",
-      height: "650px"
-    };
-
-    const imageStyle = {
-      width: "100%",
-      maxHeight: "360px",
-      width: "auto"
-    };
-
-    const cardMediaStyle = {
-      height: "370px"
-    };
-
-    const cardWrapperStyle = {
-      marginBottom: "30px",
-      display: "block"
-    };
-
-    const buttonStyle = {
-      backgroundColor: "#E9573F"
-    };
-
     return (
       <div className="cardWrapper col-sm-6 col-lg-4" style={cardWrapperStyle}>
         <Card
