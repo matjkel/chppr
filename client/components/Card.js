@@ -10,6 +10,7 @@ import {cardStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} fr
 
 export default class DishCard extends React.Component {
   render() {
+    console.log("ALL DATA:", this.props.data);
     return (
       <div className="cardWrapper col-sm-6 col-lg-4" style={cardWrapperStyle}>
         <Card
@@ -31,6 +32,9 @@ export default class DishCard extends React.Component {
             <strong style={{clear: "none", float: "right"}}>
               ${this.props.data.price}
             </strong>
+              {Array.apply(null, new Array(this.props.data.rating)).map(function(){
+                return <img style={{height:30, width:30}} src="/icons/star.png"/>
+              })}
             <span style={{float: "left"}}>
               {this.props.data.spicy ? " [🌶]" : ""}
               {this.props.data.gluten_free ? " [🚫🍞]" : ""}
