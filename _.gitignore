@@ -31,5 +31,5 @@ bower_components/
 # authentication keys
 server/config/auth.js
 
-# mac default files
+# mac files
 .DS_Store
