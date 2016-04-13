@@ -9,6 +9,7 @@ exports.seed = function(knex, Promise) {
     knex('categories').insert({type:'American'}),
     knex('categories').insert({type:'Asian'}),
     knex('categories').insert({type:'Italian'}),
-    knex('categories').insert({type:'BBQ'})
+    knex('categories').insert({type:'BBQ'}),
+    knex('categories').insert({type:'Desert'})
   );
 };

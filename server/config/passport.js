@@ -4,6 +4,7 @@ var InstagramStrategy = require('passport-instagram').Strategy;
 var TwitterStrategy   = require('passport-twitter').Strategy;
 var authKeys = require('./auth');
 
+
 var thisUser;
 var FacebookStrategy  = require('passport-facebook').Strategy;
 passport.serializeUser(function(user, done) {
