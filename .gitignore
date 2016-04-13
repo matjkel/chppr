@@ -9,3 +9,6 @@ dist/
 
 # authentication keys
 server/config/auth.js
+
+# mac files
+.DS_Store
