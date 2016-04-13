@@ -45,6 +45,9 @@ export default class Navbar extends React.Component {
               <MenuItem value={3} primaryText="Asian"/>
               <MenuItem value={4} primaryText="Italian"/>
               <MenuItem value={5} primaryText="BBQ"/>
+              <MenuItem value={6} primaryText="Greek"/>
+              <MenuItem value={7} primaryText="Beverages"/>
+              <MenuItem value={8} primaryText="Desserts"/>
           </DropDownMenu>
           <Checkbox
             value="veg"
@@ -63,6 +66,18 @@ export default class Navbar extends React.Component {
             label="Not-Spicy"
             onClick={this.handleToggle.bind(this)}
             style={styles.checkbox}
+          />
+          <Checkbox
+            value="bev"
+            label="Beverages"
+            onClick={this.handleToggle.bind(this)}
+            styles={styles.checkbox}
+          />
+          <Checkbox
+            value="des"
+            label="Desserts"
+            onClick={this.handleToggle.bind(this)}
+            styles={styles.checkbox}
           />
         </ToolbarGroup>
         <ToolbarGroup float="right">

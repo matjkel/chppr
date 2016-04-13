@@ -15,6 +15,11 @@ console.log('at start of migration')
 			table.string('type');
 	}),
 		
+		// join table 
+		knex('posts')
+			.join('categories', 'posts.cid', '=', 'categories.cid')
+			.select('categories.type');
+
 		//favorites table
 		knex.schema.createTable('favorites', function(table){
 			//foreign key to posts table
@@ -47,6 +52,7 @@ console.log('at start of migration')
 			table.boolean('veggie');
 			table.boolean('gluten_free');
 			table.boolean('spicy');
+			table.boolean('bev');
 			table.integer('rating');
 		})
 				

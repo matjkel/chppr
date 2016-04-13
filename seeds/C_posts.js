@@ -32,7 +32,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 3,
-			category: 3,
+			category: "Asian",
 			timestamp: "02:32:00PM",
 			dish_name: "Hoedeopbap- Sashimi Bibimbap",
 			rest_name: "Hanabi",
@@ -45,7 +45,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 4,
-			category: 2,
+			category: "American",
 			timestamp: "02:33:00PM",
 			dish_name: "Smoked Duck Pastrami Sandwich",
 			rest_name: "Noble Pig Sandwich Co.",
@@ -58,7 +58,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 5,
-			category: 2,
+			category: "American",
 			timestamp: "02:34:00PM",
 			dish_name: "Blueberry Swirl & Honeyed Peaches",
 			rest_name: "Lick Honest Ice Creams",
@@ -71,7 +71,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 3,
-			category: 1,
+			category: "Mexican",
 			timestamp: "02:35:00PM",
 			dish_name: "Green Chile Queso",
 			rest_name: "Torchy's Tacos",
@@ -84,7 +84,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 2,
-			category: 2,
+			category: "American",
 			timestamp: "02:36:00PM",
 			dish_name: "Double Cheese Burger",
 			rest_name: "Shake Shack",
@@ -123,7 +123,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 5,
-			category: 3,
+			category: 2,
 			timestamp: "04:30:00PM",
 			dish_name: "'Strawberry Fields Forever' Salad",
 			rest_name: "Leaf",
@@ -158,7 +158,7 @@ exports.seed = function (knex, Promise) {
 			veggie: true,
 			gluten_free: true,
 			spicy: true,
-			rating: 3
+			rating: 3.5
 		}),
 		knex('posts').insert({
 			user_id: 1,

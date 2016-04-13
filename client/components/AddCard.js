@@ -111,6 +111,9 @@ export default class AddCard extends React.Component {
             <MenuItem value={3} primaryText="Asian"/>
             <MenuItem value={4} primaryText="Italian"/>
             <MenuItem value={5} primaryText="BBQ"/>
+            <MenuItem value={6} primaryText="Greek"/>
+            <MenuItem value={7} primaryText="Beverages"/>
+            <MenuItem value={8} primaryText="Desserts"/>
           </DropDownMenu><br/>
           <Checkbox
             onClick={this.handleVegClick.bind(this)}
