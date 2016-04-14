@@ -1,5 +1,5 @@
 import React from "react";
-import DishCard from "./Card"
+import DishCard from "./Card";
 
 export default class CardFeed extends React.Component {
   matchesUserFilters(c) {

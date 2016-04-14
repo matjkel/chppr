@@ -5,8 +5,9 @@
 
     export const imageStyle = {
       width: "100%",
+      // width: "auto"
       maxHeight: "360px",
-      width: "auto"
+      maxWidth: "360px",
     };
 
     export const cardMediaStyle = {

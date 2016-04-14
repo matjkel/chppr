@@ -1,12 +1,12 @@
 exports.up = function (knex, Promise) {
-console.log('at start of migration')
+console.log('at start of migration');
 	return Promise.all([
 				
 		//users table
 		knex.schema.createTable('users', function(table){
 			table.increments('uid').primary();
 			table.string('username').unique();
-			table.string('password')
+			table.string('password');
 		}),
 		
 		//categories table
@@ -51,8 +51,8 @@ console.log('at start of migration')
 		})
 				
 	]).then(function(){
-		console.log('at end of migration')
-	})
+		console.log('at end of migration');
+	});
 };
 
 exports.down = function (knex, Promise) {
@@ -62,5 +62,5 @@ exports.down = function (knex, Promise) {
 				knex.schema.dropTable('users'),
         knex.schema.dropTable('categories'),
         knex.schema.dropTable('favorites'),
-    ])
+    ]);
 };
