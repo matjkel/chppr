@@ -55,19 +55,21 @@ class Layout extends React.Component {
     this.setState({photo: url});
   }
   photoInput(file) {
+    var that = this;
     this.setState({photoFile: file[0]});
+    this.setState({photoUpload: './client/pictures/' + file[0].name});
     var photo = new FormData();
     photo.append('photo', file[0]);
 
+    console.log("photo", file[0]);
     console.log("formData", photo);
-
-    //this needs to change
-    // newDish.picture_path = null;
 
     request.post('/upload')
       .send(photo)
       .end(function(err, response) {
         if (err) { console.error(err); }
+        console.log("response", response.text);
+        that.setState({photoUpload: './pictures/' + response.text});
         console.log("Upload successful");
       });
 
@@ -126,7 +128,7 @@ class Layout extends React.Component {
       "dish_name": this.state.dishName,
       "rest_name": this.state.restaurantName,
       "price": Number(this.state.dishPrice),
-      "picture_path": this.state.photo,
+      "picture_path": this.state.photoUpload || this.state.photo,
       "veggie": this.state.vegClick,
       "gluten_free": this.state.gfClick,
       "spicy": this.state.spicyClick,
@@ -135,6 +137,7 @@ class Layout extends React.Component {
       "rating": this.state.dishRating
     };
 
+    console.log("newDish", newDish);
 
   ////// VERY HACKY FIX //////
     if (this.state.dishRating !== '') {

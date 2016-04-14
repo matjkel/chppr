@@ -94,7 +94,7 @@ routes.post('/feed', function(req, res) {
 routes.post('/upload', upload.any(), function(req, res, next){
 	console.log("req.body", req.body);
 	console.log("req.file", req.files);
-	res.end();
+	res.end(req.files[0].filename);
 });
 
 // endpoint thats only used to update categories table
