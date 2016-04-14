@@ -17,6 +17,7 @@ exports.seed = function (knex, Promise) {
 			spicy: false,
 			rating: 5
 		}),
+		
 		knex('posts').insert({
 			user_id: 1,
 			category: 4,
