@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import AddCard from "./components/AddCard";
 import CardFeed from "./components/CardFeed";
 
+import request from 'superagent';
 import fetch from "node-fetch";
 import $ from 'jquery';
 
@@ -54,7 +55,33 @@ class Layout extends React.Component {
     this.setState({photo: url});
   }
   photoInput(file) {
-    this.setState({photoFile: file});
+    this.setState({photoFile: file[0]});
+    var photo = new FormData();
+    photo.append('photo', file[0]);
+
+    console.log("formData", photo);
+
+    //this needs to change
+    // newDish.picture_path = null;
+
+    request.post('/upload')
+      .send(photo)
+      .end(function(err, response) {
+        if (err) { console.error(err); }
+        console.log("Upload successful");
+      });
+
+    // fetch('http://localhost:4000/upload', {
+    //   method: 'POST',
+    //   data: photo
+    // })
+    // .then(function(data) {
+    //   console.log("I think the file saved?");
+    //   console.log("data:", data);
+    // })
+    // .catch(function(err) {
+    //   console.log("Yo, I'm pretty sure something didn't work...:", err);
+    // });
   }
   dishNameInput(dishName) {
     this.setState({dishName: dishName});
@@ -108,30 +135,6 @@ class Layout extends React.Component {
       "rating": this.state.dishRating
     };
 
-    //for drag and drop stuff
-    //superage on front
-    //multer on back
-
-    if (this.state.photoFile){
-      var photo = {
-        photo: that.state.photoFile[0]
-      };
-
-      //this needs to change
-      newDish.picture_path = null;
-
-      fetch('http://localhost:4000/upload', {
-        method: 'POST',
-        body: photo
-      })
-      .then(function(data) {
-        console.log("I think the file saved?");
-        console.log("data:", data);
-      })
-      .catch(function(err) {
-        console.log("Yo, I'm pretty sure something didn't work...:", err);
-      });
-    }
 
   ////// VERY HACKY FIX //////
     if (this.state.dishRating !== '') {
@@ -232,7 +235,7 @@ class Layout extends React.Component {
           addCardSubmit={this.addCardSubmit.bind(this)}
           photoAdd={this.state.photo ? null : this.photoAdd.bind(this)}
           photoInput={this.photoInput.bind(this)}
-          photo={this.state.photoFile ? this.state.photoFile[0].preview : null}
+          photo={this.state.photoFile ? this.state.photoFile.preview : null}
           showAdd={this.state.showAdd}
           catAdd={this.catAdd.bind(this)}
           dishCat={this.state.dishCat}

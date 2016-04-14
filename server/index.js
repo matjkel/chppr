@@ -6,6 +6,9 @@ var webpackDevMiddleware = require ('webpack-dev-middleware');
 var config = require( './../webpack.config.js');
 var compiler = webpack(config);
 
+var multer = require('multer');
+var upload = multer({ dest: './client/pictures'});
+
 var Path = require('path');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -87,6 +90,12 @@ routes.post('/feed', function(req, res) {
 			});
 });
 
+//upload a file
+routes.post('/upload', upload.any(), function(req, res, next){
+	console.log("req.body", req.body);
+	console.log("req.file", req.files);
+	res.end();
+});
 
 // endpoint thats only used to update categories table
 routes.post('/categories', function(req, res) {
@@ -164,7 +173,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'), function(req,res){
 app.get('/auth/noAuth', function(req,res){
 	res.cookie("loggedIn","false");
 	res.redirect('/dashboard');
-})
+});
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
