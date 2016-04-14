@@ -50,9 +50,12 @@ class Layout extends React.Component {
   categorySelect(category) {
     this.setState({category});
   }
-  // photoInput(files) {
-  //   this.setState({photo: files});
-  // }
+  photoAdd(url) {
+    this.setState({photo: url});
+  }
+  photoInput(file) {
+    this.setState({photo: file});
+  }
   dishNameInput(dishName) {
     this.setState({dishName: dishName});
   }
@@ -83,9 +86,6 @@ class Layout extends React.Component {
   // dessertInput() {
   //   this.setState({dessertClick: !this.state.dessertClick});
   // }
-  photoAdd(url) {
-    this.setState({photo: url});
-  }
   catAdd(category) {
     this.setState({dishCat: category});
   }
@@ -112,6 +112,7 @@ class Layout extends React.Component {
       photo: that.state.photo[0]
     };
 
+    console.log("file:", file);
     // fetch('http://localhost:4000/upload', {
     //   method: 'POST',
     //   body: 'test'
@@ -220,7 +221,7 @@ class Layout extends React.Component {
           spicyInput={this.spicyInput.bind(this)}
 
           addCardSubmit={this.addCardSubmit.bind(this)}
-          // photoInput={this.photoInput.bind(this)}
+          photoInput={this.photoInput.bind(this)}
           photo={this.state.photo ? this.state.photo[0].preview : null}
           photoAdd={this.photoAdd.bind(this)}
           showAdd={this.state.showAdd}
