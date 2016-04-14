@@ -66,11 +66,26 @@ export default class Navbar extends React.Component {
           />
         </ToolbarGroup>
         <ToolbarGroup float="right">
-          <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
+
+        {
+          getCookieValue("profilePic") !== undefined
+          ? <img style={{width:50, height:50}} src={getCookieValue("profilePic")} />
+          : null
+        }
+          {
+          document.cookie.split("; ").indexOf("loggedIn=false")!==-1
+           ? <a href="/" className="btn btn-primary" >Log in</a>
+           : <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
+          }
         </ToolbarGroup>
       </Toolbar>
     )
   }
+}
+
+function getCookieValue(a, b) {
+    b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
 }
 /*
   In case we want to filter by favorites later:

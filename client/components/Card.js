@@ -31,8 +31,8 @@ export default class DishCard extends React.Component {
             <strong style={{clear: "none", float: "right"}}>
               ${this.props.data.price}
             </strong>
-              {Array.apply(null, new Array(this.props.data.rating)).map(function(){
-                return <img style={{height:30, width:30}} src="/icons/star.png"/>
+              {Array.apply(null, new Array(this.props.data.rating)).map(function(cur, index){
+                return <img key={index} style={{height:30, width:30}} src="/icons/star.png"/>
               })}
             <span style={{float: "left"}}>
               {this.props.data.spicy ? " [🌶]" : ""}

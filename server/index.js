@@ -161,12 +161,18 @@ app.get('/auth/facebook', passport.authenticate('facebook'), function(req,res){
 	console.log("got to auth/facebook");
 });
 
+app.get('/auth/noAuth', function(req,res){
+	res.cookie("loggedIn","false");
+	res.redirect('/dashboard');
+})
+
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
   function(req, res) {
   	console.log("got to callback")
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.clearCookie('loggedIn');
+    res.redirect('/dashboard');
   });
 
 /////// NOTE TO FUTURE GROUPS //////
