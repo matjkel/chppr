@@ -77,12 +77,12 @@ class Layout extends React.Component {
   spicyInput() {
     this.setState({spicyClick: !this.state.spicyClick});
   }
-  bevInput() {
-    this.setState({bevClick: !this.state.bevClick});
-  }
-  dessertInput() {
-    this.setState({dessertClick: !this.state.dessertClick});
-  }
+  // bevInput() {
+  //   this.setState({bevClick: !this.state.bevClick});
+  // }
+  // dessertInput() {
+  //   this.setState({dessertClick: !this.state.dessertClick});
+  // }
   photoAdd(url) {
     this.setState({photo: url});
   }
@@ -103,8 +103,8 @@ class Layout extends React.Component {
       "veggie": this.state.vegClick,
       "gluten_free": this.state.gfClick,
       "spicy": this.state.spicyClick,
-      "bev": this.state.bevClick,
-      "dessert": this.state.dessertClick,
+      // "bev": this.state.bevClick,
+      // "dessert": this.state.dessertClick,
       "rating": this.state.dishRating
     };
 
@@ -147,8 +147,8 @@ class Layout extends React.Component {
           vegClick: false,
           gfClick: false,
           spicyClick: false,
-          bevClick: false,
-          dessertClick: false,
+          // bevClick: false,
+          // dessertClick: false,
           photo: null,
           dishCat: null
         });
@@ -218,8 +218,7 @@ class Layout extends React.Component {
           vegInput={this.vegInput.bind(this)}
           gfInput={this.gfInput.bind(this)}
           spicyInput={this.spicyInput.bind(this)}
-          bevInput={this.bevInput.bind(this)}
-          dessertInput={this.dessertInput.bind(this)}
+
           addCardSubmit={this.addCardSubmit.bind(this)}
           // photoInput={this.photoInput.bind(this)}
           photo={this.state.photo ? this.state.photo[0].preview : null}
@@ -232,8 +231,6 @@ class Layout extends React.Component {
           boolVeg={this.state.veg}
           boolGF={this.state.gf}
           boolNoSpice={this.state.noSpice}
-          boolBev={this.state.bev}
-          boolDes={this.state.des}
           cardData={this.state.cardData}
           category={this.state.category}
         />

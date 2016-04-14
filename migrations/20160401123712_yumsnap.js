@@ -16,9 +16,9 @@ console.log('at start of migration');
 	}),
 		
 		// join table 
-		knex('posts')
-			.join('categories', 'posts.cid', '=', 'categories.cid')
-			.select('categories.type');
+		// knex('posts')
+		// 	.join('categories', 'posts.cid', '=', 'categories.cid')
+		// 	.select('categories.type');
 
 		//favorites table
 		knex.schema.createTable('favorites', function(table){
@@ -52,7 +52,6 @@ console.log('at start of migration');
 			table.boolean('veggie');
 			table.boolean('gluten_free');
 			table.boolean('spicy');
-			table.boolean('bev');
 			table.integer('rating');
 		})
 				

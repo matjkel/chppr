@@ -38,7 +38,6 @@ export default class DishCard extends React.Component {
               {this.props.data.spicy ? " 🌶" : ""}
               {this.props.data.gluten_free ? " 🚫🍞" : ""}
               {this.props.data.veggie ? " 🌽" : ""}
-              {this.props.data.bev ? " 🍸" : ""}
             </span>
           </row>
         </Card>

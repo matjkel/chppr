@@ -9,7 +9,15 @@ exports.seed = function(knex, Promise) {
     knex('categories').insert({type:'American'}),
     knex('categories').insert({type:'Asian'}),
     knex('categories').insert({type:'Italian'}),
+    knex('categories').insert({type:'Brunch'}),
+    knex('categories').insert({type:'Greek'}),
+    knex('categories').insert({type:'German'}),
+    knex('categories').insert({type:'Brazilian'}),
     knex('categories').insert({type:'BBQ'}),
-    knex('categories').insert({type:'Desert'})
+    knex('categories').insert({type:'Cuban'}),
+    knex('categories').insert({type:'Cajun'}),
+    knex('categories').insert({type:'Southern'}),
+    knex('categories').insert({type:'Beverages'}),
+    knex('categories').insert({type:'Desserts'})
   );
 };
