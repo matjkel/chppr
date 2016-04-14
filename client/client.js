@@ -54,7 +54,7 @@ class Layout extends React.Component {
     this.setState({photo: url});
   }
   photoInput(file) {
-    this.setState({photo: file});
+    this.setState({photoFile: file});
   }
   dishNameInput(dishName) {
     this.setState({dishName: dishName});
@@ -108,21 +108,30 @@ class Layout extends React.Component {
       "rating": this.state.dishRating
     };
 
-    var file = {
-      photo: that.state.photo[0]
-    };
-    console.log("this.state.photo", this.state.photo);
-    console.log("file:", file);
-    // fetch('http://localhost:4000/upload', {
-    //   method: 'POST',
-    //   body: 'test'
-    // })
-    // .then(function() {
-    //   console.log("I think the file saved?");
-    // })
-    // .catch(function(err) {
-    //   console.log("Yo, I'm pretty sure something didn't work...:", err);
-    // })
+    //for drag and drop stuff
+    //superage on front
+    //multer on back
+
+    if (this.state.photoFile){
+      var photo = {
+        photo: that.state.photoFile[0]
+      };
+
+      //this needs to change
+      newDish.picture_path = null;
+
+      fetch('http://localhost:4000/upload', {
+        method: 'POST',
+        body: photo
+      })
+      .then(function(data) {
+        console.log("I think the file saved?");
+        console.log("data:", data);
+      })
+      .catch(function(err) {
+        console.log("Yo, I'm pretty sure something didn't work...:", err);
+      });
+    }
 
   ////// VERY HACKY FIX //////
     if (this.state.dishRating !== '') {
@@ -223,7 +232,7 @@ class Layout extends React.Component {
           addCardSubmit={this.addCardSubmit.bind(this)}
           photoAdd={this.state.photo ? null : this.photoAdd.bind(this)}
           photoInput={this.photoInput.bind(this)}
-          photo={this.state.photo ? this.state.photo[0].preview : null}
+          photo={this.state.photoFile ? this.state.photoFile[0].preview : null}
           showAdd={this.state.showAdd}
           catAdd={this.catAdd.bind(this)}
           dishCat={this.state.dishCat}
