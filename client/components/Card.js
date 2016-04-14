@@ -35,9 +35,9 @@ export default class DishCard extends React.Component {
                 return <img style={{height:30, width:30}} src="/icons/star.png"/>
               })}
             <span style={{float: "left"}}>
-              {this.props.data.spicy ? " [🌶]" : ""}
-              {this.props.data.gluten_free ? " [🚫🍞]" : ""}
-              {this.props.data.veggie ? " [🌽]" : ""}
+              {this.props.data.spicy ? " 🌶" : ""}
+              {this.props.data.gluten_free ? " 🚫🍞" : ""}
+              {this.props.data.veggie ? " 🌽" : ""}
             </span>
           </row>
         </Card>

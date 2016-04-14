@@ -43,7 +43,17 @@ export default class Navbar extends React.Component {
               <MenuItem value={2} primaryText="American"/>
               <MenuItem value={3} primaryText="Asian"/>
               <MenuItem value={4} primaryText="Italian"/>
-              <MenuItem value={5} primaryText="BBQ"/>
+              <MenuItem value={5} primaryText="Brunch"/>
+              <MenuItem value={6} primaryText="Greek"/>
+              <MenuItem value={7} primaryText="German"/>
+              <MenuItem value={8} primaryText="Brazilian"/>
+              <MenuItem value={9} primaryText="BBQ"/>
+              <MenuItem value={10} primaryText="Cuban"/>
+              <MenuItem value={11} primaryText="Cajun"/>
+              <MenuItem value={12} primaryText="Southern"/>
+              <MenuItem value={13} primaryText="Non-Alcoholic"/>
+              <MenuItem value={14} primaryText="Alcoholic"/>
+              <MenuItem value={15} primaryText="Desserts"/>
           </DropDownMenu>
           <Checkbox
             value="veg"

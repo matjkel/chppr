@@ -15,6 +15,11 @@ console.log('at start of migration');
 			table.string('type');
 	}),
 		
+		// join table 
+		// knex('posts')
+		// 	.join('categories', 'posts.cid', '=', 'categories.cid')
+		// 	.select('categories.type');
+
 		//favorites table
 		knex.schema.createTable('favorites', function(table){
 			//foreign key to posts table
