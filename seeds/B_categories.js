@@ -17,7 +17,8 @@ exports.seed = function(knex, Promise) {
     knex('categories').insert({type:'Cuban'}),
     knex('categories').insert({type:'Cajun'}),
     knex('categories').insert({type:'Southern'}),
-    knex('categories').insert({type:'Beverages'}),
+    knex('categories').insert({type:'Non-Alcoholic'}),
+    knex('categories').insert({type:'Alcoholic'}),
     knex('categories').insert({type:'Desserts'})
   );
 };
