@@ -4,8 +4,10 @@ bower_components/
 yumsnap/
 *.log
 
+
 build/
 dist/
+client/pictures
 
 # authentication keys
 server/config/auth.js
