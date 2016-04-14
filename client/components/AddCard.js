@@ -151,7 +151,7 @@ export default class AddCard extends React.Component {
             onClick={this.handleSpicyClick.bind(this)}
             style={styles.checkbox}
           /><br/>
-          <RaisedButton style={{"margin-bottom": "10px"}} onClick={this.handleSubmit.bind(this)} label="Submit" default={true} />
+          <RaisedButton style={{"marginBottom": "10px"}} onClick={this.handleSubmit.bind(this)} label="Submit" default={true} />
         </div>
 
      

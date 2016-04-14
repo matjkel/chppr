@@ -111,7 +111,7 @@ class Layout extends React.Component {
     var file = {
       photo: that.state.photo[0]
     };
-
+    console.log("this.state.photo", this.state.photo);
     console.log("file:", file);
     // fetch('http://localhost:4000/upload', {
     //   method: 'POST',
@@ -221,9 +221,9 @@ class Layout extends React.Component {
           spicyInput={this.spicyInput.bind(this)}
 
           addCardSubmit={this.addCardSubmit.bind(this)}
+          photoAdd={this.state.photo ? null : this.photoAdd.bind(this)}
           photoInput={this.photoInput.bind(this)}
           photo={this.state.photo ? this.state.photo[0].preview : null}
-          photoAdd={this.photoAdd.bind(this)}
           showAdd={this.state.showAdd}
           catAdd={this.catAdd.bind(this)}
           dishCat={this.state.dishCat}
