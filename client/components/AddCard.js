@@ -80,7 +80,7 @@ export default class AddCard extends React.Component {
 
 
     return (
-      <div style={{"text-align": "center",  width: "450px", margin: "0 auto", "margin-bottom": "50px"}}>
+      <div style={{"textAlign": "center",  width: "450px", margin: "0 auto", "marginBottom": "50px"}}>
 
         <div style={styles.boxes}>
           <TextField
@@ -123,8 +123,8 @@ export default class AddCard extends React.Component {
               <MenuItem value={11} primaryText="Cajun"/>
               <MenuItem value={12} primaryText="Southern"/>
               <MenuItem value={13} primaryText="Non-Alcoholic"/>
-              <MenuItem value={13} primaryText="Alcoholic"/>
-              <MenuItem value={14} primaryText="Desserts"/>
+              <MenuItem value={14} primaryText="Alcoholic"/>
+              <MenuItem value={15} primaryText="Desserts"/>
           </DropDownMenu><br/>
           <Checkbox
             onClick={this.handleVegClick.bind(this)}
