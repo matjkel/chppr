@@ -181,12 +181,6 @@ app.get('/auth/facebook/callback',
 //   })
 // })
 
-
-
-
-// route for passport
-require('./models/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
 // Static assets (html, etc.)
 var assetFolder = Path.resolve(__dirname, '../client');
 routes.use(express.static(assetFolder));

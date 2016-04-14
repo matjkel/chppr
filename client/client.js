@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import Navbar from "./components/Navbar"
-import AddCard from "./components/AddCard"
-import CardFeed from "./components/CardFeed"
+import Navbar from "./components/Navbar";
+import AddCard from "./components/AddCard";
+import CardFeed from "./components/CardFeed";
 
 import fetch from "node-fetch";
 import $ from 'jquery';
@@ -74,10 +74,10 @@ class Layout extends React.Component {
     this.setState({spicyClick: !this.state.spicyClick});
   }
   photoAdd(url) {
-    this.setState({photo: url})
+    this.setState({photo: url});
   }
   catAdd(category) {
-    this.setState({dishCat: category})
+    this.setState({dishCat: category});
   }
   addCardSubmit() {
     var that = this;
@@ -94,11 +94,11 @@ class Layout extends React.Component {
       "gluten_free": this.state.gfClick,
       "spicy": this.state.spicyClick,
       "rating": this.state.dishRating
-    }
+    };
 
     var file = {
       photo: that.state.photo[0]
-    }
+    };
 
     // fetch('http://localhost:4000/upload', {
     //   method: 'POST',
@@ -141,7 +141,7 @@ class Layout extends React.Component {
       })
       .fail(function() {
         console.log("Failed to post new dish");
-      })
+      });
     }
 
   }
@@ -156,7 +156,7 @@ class Layout extends React.Component {
     })
     .then(function(json) {
       console.log('got this json', json);
-      that.setState({cardData: json})
+      that.setState({cardData: json});
     })
     .catch(function(err) {
       console.log('something went wrong getting data', err);

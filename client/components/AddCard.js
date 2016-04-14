@@ -26,7 +26,7 @@ export default class AddCard extends React.Component {
     this.props.dishPriceInput(e.target.value);
   }
   handleDishRating(e) {
-    console.log("rating arguments", e)
+    console.log("rating arguments", e);
     this.props.dishRatingInput(e);
   }
   handleVegClick() {
@@ -45,7 +45,7 @@ export default class AddCard extends React.Component {
     this.props.photoAdd(e.target.value);
   }
   handleCatSelect(event, index, value) {
-    console.log(value)
+    console.log(value);
     this.props.catAdd(value);
   }
 

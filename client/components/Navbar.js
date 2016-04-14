@@ -11,7 +11,7 @@ import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
 import AuthPanel from "./AuthPanel";
 import AddCard from "./AddCard";
-import {styles} from '../inlineStyles'
+import {styles} from '../inlineStyles';
 
 export default class Navbar extends React.Component {
 
@@ -22,11 +22,10 @@ export default class Navbar extends React.Component {
   // YES, this setTimeout looks janky but it was the only way I found that displays the checked boxes after selecting them
   handleToggle(e) {
     const toggleFilter = e.target.value;
-    window.setTimeout(
-      function(){
-      this.props.stateToggle(toggleFilter)}.bind(this),
-      0
-    );
+    window.setTimeout(function(){
+        this.props.stateToggle(toggleFilter);
+      }
+      .bind(this), 0);
   }
 
   handleShowAdd() {
