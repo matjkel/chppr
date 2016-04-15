@@ -1,19 +1,20 @@
 exports.up = function (knex, Promise) {
-console.log('at start of migration');
+	console.log('at start of migration');
 	return Promise.all([
 				
 		//users table
 		knex.schema.createTable('users', function(table){
 			table.increments('uid').primary();
 			table.string('username').unique();
-			table.string('password');
+			table.string('name');
+			table.string('profilepic');
 		}),
 		
 		//categories table
 		knex.schema.createTable('categories', function(table){
 			table.increments('cid').primary();
 			table.string('type');
-	}),
+		}),
 		
 		// join table 
 		// knex('posts')
@@ -46,6 +47,7 @@ console.log('at start of migration');
 			
 			table.time('timestamp');
 			table.string('dish_name');
+			table.string('dish_description');
 			table.string('rest_name');
 			table.integer('price');
 			table.string('picture_path');

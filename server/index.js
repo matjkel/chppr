@@ -16,7 +16,7 @@ var bodyParser = require('body-parser');
 
 var passport = require('passport');
 var flash    = require('connect-flash'); // messages stored in session
-require('./config/passport');
+var getInfo = require('./config/passport');
 
 var Posts = require('./models/posts');
 var Users = require('./models/users');
@@ -109,61 +109,6 @@ routes.post('/categories', function(req, res) {
 			});
 });
 
-
-//Signup And login routes will be changed/deleted once auth is set up
-routes.post('/signup', function(req, res) {
-	var user = req.body;
-
-	Users.create(user)
-	.then(function(person){
-		res.status(201).send(person);
-	})
-	.catch(function (err) {
-	console.log('Error creating new user: ', err);
-	return res.status(404).send(err);
-	});
-});
-
-
-routes.post('/login', function (req, res) {
-	var user = req.body.username;
-	var pass = req.body.password;
-
-	Users.verify(user, pass).then(function (person) {
-		if (person){
-			res.status(201).send(person);
-		}
-		else {
-			res.status(400);
-			res.end('not a user');
-		}
-	});
-});
-
-// var authKeys = require('./config/auth');
-// var FacebookStrategy  = require('passport-facebook').Strategy;
-// passport.serializeUser(function(user, done) {
-//   return done(null, String(user.id));
-// });
-
-// passport.deserializeUser(function(id, done) {
-//   return done(null, User.current);
-// });
-
-// passport.use(new FacebookStrategy({
-//     clientID: authKeys.facebookClient,
-//     clientSecret: authKeys.facebookSecret,
-//     callbackURL: "http://localhost:3000/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     console.log("in construction:", arguments);
-// //    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-//       return done(err, profile);
-//  //   });
-//   }
-// ));
-
-
 app.get('/auth/facebook', passport.authenticate('facebook'), function(req,res){
 	console.log("got to auth/facebook");
 });
@@ -177,6 +122,12 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
   function(req, res) {
   	console.log("got to callback");
+  	var info = getInfo();
+
+ console.log(typeof info.pic)
+  	res.cookie("profilePic", info.pic)
+  	res.cookie("profileName", info.name)
+
     // Successful authentication, redirect home.
     res.clearCookie('loggedIn');
     res.redirect('/dashboard');

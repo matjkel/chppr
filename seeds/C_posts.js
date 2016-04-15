@@ -136,7 +136,7 @@ exports.seed = function (knex, Promise) {
 			rating: 5
 		}),
 		knex('posts').insert({
-			user_id: 6,
+			user_id: 2,
 			category: 13,
 			timestamp: "05:30:00PM",
 			dish_name: "Kiwi Spinach Smoothie",
