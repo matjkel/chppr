@@ -20,6 +20,7 @@ Post.loader = function () {
     .then(function (result) {
       var obj = {}
       console.log("your data", result)
+      //filter out password and things
       // Prepare new user for outside world
       return result;
     });

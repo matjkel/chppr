@@ -10,8 +10,7 @@ import ReactSlider from './react-slider';
 import {addCardStyles as styles} from '../inlineStyles';
 
   var slider = React.createFactory(ReactSlider);
-  var handleDishPrice;
-  var dishPrice = 5;
+  var globalValue = 5;
   function map(v, f, context) {
     return (v && v.map) ? v.map(f, context) : f.call(context, v, 0);
   }
@@ -23,8 +22,8 @@ import {addCardStyles as styles} from '../inlineStyles';
     },
     onChange: function (value) {
       this.setState({value: value});
-      dishPrice = value;
-      handleDishPrice(dishPrice);
+      globalValue = value;
+      console.log(value)
     },
     render: function () {
       return slider(
@@ -56,10 +55,6 @@ export default class AddCard extends React.Component {
   handleDishDescription(e) {
     this.props.dishDescriptionInput(e.target.value);
   }
-  handleDishPrice(value) {
-    this.props.dishPriceInput(value);
-    
-  }
   handleDishRating(e) {
     console.log("rating arguments", e);
     this.props.dishRatingInput(e);
@@ -74,6 +69,8 @@ export default class AddCard extends React.Component {
     window.setTimeout(this.props.spicyInput, 0);
   }
   handleSubmit() {
+    console.log(globalValue);
+    this.props.dishPriceInput(globalValue);
     this.props.addCardSubmit();
   }
   handlePhoto(e) {
@@ -85,7 +82,6 @@ export default class AddCard extends React.Component {
   }
 
   render() {
-    handleDishPrice = this.props.dishPriceInput;
     return (
       <div style={styles.block}>
         {!this.props.photo ? 
@@ -115,12 +111,13 @@ export default class AddCard extends React.Component {
         <StarRatingComponent
           name="rate1"
           starCount={5}
+          starColor="red"
           value={0}
           onStarClick={this.handleDishRating.bind(this)}
         /><br/><br/>
 
           <h4>Price of Dish</h4>
-          <Slider defaultValue={5} orientation='horizontal' max={30} withBars={true}/>
+          <Slider defaultValue={0} orientation='horizontal' max={30} withBars={true}/>
           <br/>
 
           <TextField
