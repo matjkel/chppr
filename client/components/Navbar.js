@@ -10,7 +10,6 @@ import Checkbox from 'material-ui/lib/checkbox';
 import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
 import AuthPanel from "./AuthPanel";
-import AddCard from "./AddCard";
 import {styles} from '../inlineStyles';
 
 export default class Navbar extends React.Component {
@@ -55,6 +54,9 @@ export default class Navbar extends React.Component {
             <MenuItem value={14} primaryText="Alcoholic"/>
             <MenuItem value={15} primaryText="Desserts"/>
           </DropDownMenu>
+
+
+
           <Checkbox
             value="veg"
             onClick={this.handleToggle.bind(this)}

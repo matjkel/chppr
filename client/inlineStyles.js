@@ -1,6 +1,6 @@
     export const cardStyle = {
       padding: "0px",
-      height: "550px"
+      height: "600px"
     };
 
     export const priceStyle = {
@@ -8,7 +8,8 @@
       float: "right",
       color: "gray",
       fontSize: "24",
-      marginRight: 20
+      marginRight: 20,
+      
     };
 
     export const imageStyle = {
@@ -55,5 +56,39 @@
       },
       button: {
         margin: 12,
+      }
+    };
+
+
+
+    export const addCardStyles = {
+      checkbox: {
+        display: 'inline-block',
+        textAlign: 'left',
+        width: '150px',
+        marginTop: 16
+      },
+      dropzone: {
+        width: '200px',
+        textAlign: 'center',
+        margin: '0 auto'
+      },
+      block: {
+        textAlign: 'center',
+        width: '450px',
+        margin: '0 auto',
+        marginBottom: '50px'
+      },
+      text: {
+        // padding: '5px',
+        width: '100px',
+        margin: '0 auto'
+      },
+      dropdown: {
+        width: '200px',
+        border: '2px solid gray'
+      },
+      button: {
+        margin: '20px 0'
       }
     };

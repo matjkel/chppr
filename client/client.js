@@ -57,9 +57,9 @@ class Layout extends React.Component {
   restaurantNameInput(restaurantName) {
     this.setState({restaurantName: restaurantName});
   }
-  // dishDescriptionInput(dishDescription) {
-  //   this.setState({dishDescription: dishDescription});
-  // }
+  dishDescriptionInput(dishDescription) {
+    this.setState({dishDescription: dishDescription});
+  }
   dishPriceInput(dishPrice) {
     this.setState({dishPrice: dishPrice});
   }
@@ -117,9 +117,10 @@ class Layout extends React.Component {
       "veggie": this.state.vegClick,
       "gluten_free": this.state.gfClick,
       "spicy": this.state.spicyClick,
+      //"dish_description": this.state.dishDescription,
+      "rating": this.state.dishRating
       // "bev": this.state.bevClick,
       // "dessert": this.state.dessertClick,
-      "rating": this.state.dishRating
     };
 
     if (this.state.dishRating && this.state.dishName && this.state.dishCat) {
@@ -179,7 +180,7 @@ class Layout extends React.Component {
         { this.state.showAdd ? <AddCard
           dishNameInput={this.dishNameInput.bind(this)}
           restaurantNameInput={this.restaurantNameInput.bind(this)}
-          // dishDescriptionInput={this.dishDescriptionInput.bind(this)}
+          dishDescriptionInput={this.dishDescriptionInput.bind(this)}
           dishPriceInput={this.dishPriceInput.bind(this)}
           dishRatingInput={this.dishRatingInput.bind(this)}
           vegInput={this.vegInput.bind(this)}
