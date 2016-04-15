@@ -6,6 +6,9 @@ var webpackDevMiddleware = require ('webpack-dev-middleware');
 var config = require( './../webpack.config.js');
 var compiler = webpack(config);
 
+var multer = require('multer');
+var upload = multer({ dest: './client/pictures'});
+
 var Path = require('path');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -87,6 +90,10 @@ routes.post('/feed', function(req, res) {
 			});
 });
 
+//upload a file
+routes.post('/upload', upload.single('photo'), function(req, res, next){
+	res.end(req.file.filename);
+});
 
 // endpoint thats only used to update categories table
 routes.post('/categories', function(req, res) {
@@ -164,7 +171,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'), function(req,res){
 app.get('/auth/noAuth', function(req,res){
 	res.cookie("loggedIn","false");
 	res.redirect('/dashboard');
-})
+});
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
@@ -174,18 +181,6 @@ app.get('/auth/facebook/callback',
     res.clearCookie('loggedIn');
     res.redirect('/dashboard');
   });
-
-/////// NOTE TO FUTURE GROUPS //////
-/////// THIS ALMOST KINDA WORKS ////
-// routes.post('/upload', function (req, res) {
-// 	var file = req.body;
-//   console.log("req body:", file);
-//   var path = "./client/pictures/test4.jpg"
-//   fs.writeFile(path, file.preview, function(err) {
-//     if (err) {throw err};
-//     console.log('No errors!');
-//   })
-// })
 
 // Static assets (html, etc.)
 var assetFolder = Path.resolve(__dirname, '../client');
