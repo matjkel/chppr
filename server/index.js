@@ -109,6 +109,14 @@ routes.post('/categories', function(req, res) {
 			});
 });
 
+app.get('/auth/logout', function(req,res){
+  req.logout();
+  req.session.destroy();
+  res.clearCookie('profilePic');
+  res.clearCookie('profileName');
+  res.redirect('/');
+})
+
 app.get('/auth/facebook', passport.authenticate('facebook'), function(req,res){
 	console.log("got to auth/facebook");
 });
