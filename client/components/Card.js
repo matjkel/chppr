@@ -6,7 +6,11 @@ import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
-import {cardStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} from '../inlineStyles';
+
+import Avatar from 'material-ui/lib/avatar';
+import FontIcon from 'material-ui/lib/font-icon';
+
+import {cardStyle, priceStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} from '../inlineStyles';
 
 export default class DishCard extends React.Component {
   render() {
@@ -15,30 +19,31 @@ export default class DishCard extends React.Component {
         <Card
           className=""
           style={cardStyle}>
-          <CardHeader
-            title={"User Number "+ this.props.data.user_id}
-            subtitle={"Category Number "+ this.props.data.category}
-            avatar="http://lorempixel.com/200/200/"
-          />
-          <CardMedia style={cardMediaStyle}>
-              <img style={imageStyle} src={this.props.data.picture_path} />
+          <CardMedia 
+            style={cardMediaStyle} 
+            overlayStyle={{color:"white", bottom:10, fontSize:16}} 
+            overlay={
+              <CardTitle            
+                expandable={true}
+                initiallyExpanded={false}
+                title={this.props.data.dish_name} 
+                subtitle={this.props.data.rest_name} 
+              />
+            }
+          >
+            <img style={imageStyle} src={this.props.data.picture_path} />
           </CardMedia>
-          <CardTitle
-            title={this.props.data.dish_name}
-            subtitle={this.props.data.rest_name}
-          />
           <row>
-            <strong style={{clear: "none", float: "right"}}>
-              ${this.props.data.price}
-            </strong>
+            <Avatar style={{margin:10}} src="http://www.lcfc.com/images/common/bg_player_profile_default_big.png"/>
               {Array.apply(null, new Array(this.props.data.rating)).map(function(cur, index){
                 return <img key={index} style={{height:30, width:30}} src="/icons/star.png"/>
               })}
-            <span style={{float: "left"}}>
-              {this.props.data.spicy ? " 🌶" : ""}
-              {this.props.data.gluten_free ? " 🚫🍞" : ""}
-              {this.props.data.veggie ? " 🌽" : ""}
-            </span>
+            <CardText>
+             This is a super important review that is actually a template and not really important but for the sake of this project we should probably have a test description so this is what this is blah im done
+            </CardText>
+            <strong style={priceStyle}>
+              ${this.props.data.price}
+            </strong>
           </row>
         </Card>
       </div>
