@@ -141,6 +141,29 @@ app.get('/auth/facebook/callback',
     res.redirect('/dashboard');
   });
 
+app.get('/auth/twitter', passport.authenticate('twitter'), function(req,res){
+	console.log("got to auth/twiter");
+});
+
+// app.get('/auth/noAuth', function(req,res){
+// 	res.cookie("loggedIn","false");
+// 	res.redirect('/dashboard');
+// });
+
+app.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/auth/twitter' }),
+  function(req, res) {
+  	console.log("got to callback");
+  	var info = getInfo();
+
+ // console.log(typeof info.pic)
+  	res.cookie("profilePic", info.pic)
+  	res.cookie("profileName", info.name)
+
+  	res.clearCookie('loggedIn');
+    res.redirect('/dashboard');
+  });
+
 // Static assets (html, etc.)
 var assetFolder = Path.resolve(__dirname, '../client');
 routes.use(express.static(assetFolder));
