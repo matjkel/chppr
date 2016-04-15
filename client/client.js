@@ -2,14 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import request from 'superagent';
 
 import Navbar from "./components/Navbar";
 import AddCard from "./components/AddCard";
 import CardFeed from "./components/CardFeed";
 
-import request from 'superagent';
-import fetch from "node-fetch";
-import $ from 'jquery';
 
 injectTapEventPlugin();
 
