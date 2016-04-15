@@ -54,45 +54,54 @@ export default class AddCard extends React.Component {
 
     const styles = {
       checkbox: {
-        maxWidth: 150,
-        marginTop: 16,
-        // paddingLeft: 10,
+        textAlign: 'left',
+        width: '150px',
+        marginTop: 16
       },
       dropzone: {
-        // float: 'left'
+        width: '200px',
+        textAlign: 'center',
+        margin: '0 auto'
       },
       block: {
-        display: 'inline-block',
-        paddingLeft: 10,
+        textAlign: 'center',
+        width: '450px',
+        margin: '0 auto',
+        marginBottom: '50px'
       },
       text: {
-        padding: 5
+        // padding: '5px',
+        width: '100px',
+        margin: '0 auto'
       },
       boxes: {
-        // float: 'left'
+        width: '150px',
+        margin: '0 auto 30px auto'
       },
       dropdown: {
-        marginRight: 100,
-        width: 30,
-        // background: "blue",
-      },
+        width: '200px',
+        border: '2px solid gray'
+      }
     };
 
 
 
     return (
-      <div style={{"textAlign": "center",  width: "450px", margin: "0 auto", "marginBottom": "50px"}}>
+      <div style={styles.block}>
 
         <div style={styles.boxes}>
+
+          {!this.props.photo ? 
           <TextField
             onChange={this.handlePhoto.bind(this)}
             floatingLabelText="Enter URL for your photo"
-          /><br/>
-          <div style={styles.dropzone}>
+          /> : null}
 
+          <div style={styles.dropzone}>
             {!this.props.photo ? 
             <Dropzone multiple={false} accept={'image/*'} onDrop={this.onDrop.bind(this)}>
-              <div style={styles.text}>Drag your photo here, or click to select a file to upload.</div>
+              <div style={styles.text}>Drag your photo here, or click to select a file to upload. 
+                <br/><br/>Note: This overwrites the URL option.</div>
             </Dropzone> : null}
 
             {this.props.photo ? <div><br/>Image Preview: <br/><img width='250' src={this.props.photo} /></div> : null}
@@ -136,21 +145,24 @@ export default class AddCard extends React.Component {
               <MenuItem value={14} primaryText="Alcoholic"/>
               <MenuItem value={15} primaryText="Desserts"/>
           </DropDownMenu><br/>
-          <Checkbox
-            onClick={this.handleVegClick.bind(this)}
-            label="Vegetarian"
-            style={styles.checkbox}
-          />
-          <Checkbox
-            label="Gluten-free"
-            onClick={this.handleGFClick.bind(this)}
-            style={styles.checkbox}
-          />
-          <Checkbox
-            label="Spicy"
-            onClick={this.handleSpicyClick.bind(this)}
-            style={styles.checkbox}
-          /><br/>
+
+          <div style={styles.boxes}>
+            <Checkbox
+              onClick={this.handleVegClick.bind(this)}
+              label="Vegetarian"
+              style={styles.checkbox}
+            />
+            <Checkbox
+              label="Gluten-free"
+              onClick={this.handleGFClick.bind(this)}
+              style={styles.checkbox}
+            />
+            <Checkbox
+              label="Spicy"
+              onClick={this.handleSpicyClick.bind(this)}
+              style={styles.checkbox}
+            />
+          </div>
           <RaisedButton style={{"marginBottom": "10px"}} onClick={this.handleSubmit.bind(this)} label="Submit" default={true} />
         </div>
 

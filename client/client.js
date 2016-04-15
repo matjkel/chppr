@@ -38,6 +38,8 @@ class Layout extends React.Component {
       bevClick: false,
       dessertClick: false, 
       photo: null,
+      photoUrl: null,
+      photoFile: null,
       dishCat: 999
     };
 
@@ -50,40 +52,6 @@ class Layout extends React.Component {
 
   categorySelect(category) {
     this.setState({category});
-  }
-  photoAdd(url) {
-    this.setState({photo: url});
-  }
-  photoInput(file) {
-    var that = this;
-    this.setState({photoFile: file[0]});
-    this.setState({photoUpload: './client/pictures/' + file[0].name});
-    var photo = new FormData();
-    photo.append('photo', file[0]);
-
-    console.log("photo", file[0]);
-    console.log("formData", photo);
-
-    request.post('/upload')
-      .send(photo)
-      .end(function(err, response) {
-        if (err) { console.error(err); }
-        console.log("response", response.text);
-        that.setState({photoUpload: './pictures/' + response.text});
-        console.log("Upload successful");
-      });
-
-    // fetch('http://localhost:4000/upload', {
-    //   method: 'POST',
-    //   data: photo
-    // })
-    // .then(function(data) {
-    //   console.log("I think the file saved?");
-    //   console.log("data:", data);
-    // })
-    // .catch(function(err) {
-    //   console.log("Yo, I'm pretty sure something didn't work...:", err);
-    // });
   }
   dishNameInput(dishName) {
     this.setState({dishName: dishName});
@@ -118,6 +86,25 @@ class Layout extends React.Component {
   catAdd(category) {
     this.setState({dishCat: category});
   }
+  photoAdd(url) {
+    this.setState({photo: url});
+  }
+  photoInput(file) {
+    var that = this;
+    var photo = new FormData();
+    photo.append('photo', file[0]);
+
+    this.setState({photo: null});
+    this.setState({photoFile: file[0]});
+
+    request.post('/upload')
+      .send(photo)
+      .end(function(err, response) {
+        if (err) { console.error(err); }
+        that.setState({photoUrl: './pictures/' + response.text});
+        console.log("Upload successful");
+      });
+  }
   addCardSubmit() {
     var that = this;
     var newDish = {
@@ -128,7 +115,7 @@ class Layout extends React.Component {
       "dish_name": this.state.dishName,
       "rest_name": this.state.restaurantName,
       "price": Number(this.state.dishPrice),
-      "picture_path": this.state.photoUpload || this.state.photo,
+      "picture_path": this.state.photoUrl || this.state.photo,
       "veggie": this.state.vegClick,
       "gluten_free": this.state.gfClick,
       "spicy": this.state.spicyClick,
@@ -137,78 +124,45 @@ class Layout extends React.Component {
       "rating": this.state.dishRating
     };
 
-    console.log("newDish", newDish);
+    if (this.state.dishRating && this.state.dishName && this.state.dishCat) {
 
-  ////// VERY HACKY FIX //////
-    if (this.state.dishRating !== '') {
-
-      $.ajax({
-        type: "POST",
-        url: "/feed",
-        data: newDish,
-        // cache: false,
-        // processData: false,
-        // contentType: false
-      })
-      .done(function() {
-        console.log("New dish posted");
-        that.state.cardData.unshift(newDish);
-        that.setState({showAdd: false});
-        that.setState({
-          dishName: '',
-          restaurantName: '',
-          dishDescription: '',
-          dishPrice: '',
-          dishRating: '',
-          vegClick: false,
-          gfClick: false,
-          spicyClick: false,
-          // bevClick: false,
-          // dessertClick: false,
-          photo: null,
-          dishCat: null
+      request.post('/feed')
+        .send(newDish)
+        .end(function(err, response) {
+          if (err) { console.error( "Failed to upload dish", err); }
+          console.log("New Dish Successful");
+          that.state.cardData.unshift(newDish);
+          that.setState({showAdd: false});
+          that.setState({
+            dishName: '',
+            restaurantName: '',
+            dishDescription: '',
+            dishPrice: '',
+            dishRating: '',
+            vegClick: false,
+            gfClick: false,
+            spicyClick: false,
+            // bevClick: false,
+            // dessertClick: false,
+            photo: null,
+            photoUrl: null,
+            photoFile: null,
+            dishCat: null
+          });
         });
-      })
-      .fail(function() {
-        console.log("Failed to post new dish");
-      });
     }
-
   }
-
   getCardData(){
-    // TODO - Replace this with a database call
     var that = this;
 
-    fetch('http://localhost:4000/feed')
-    .then(function(res) {
-      return res.json();
-    })
-    .then(function(json) {
-      console.log('got this json', json);
-      that.setState({cardData: json});
-    })
-    .catch(function(err) {
-      console.log('something went wrong getting data', err);
-    });
-        /*
-    $.ajax({
-      url: '/feed',
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        console.log('got this data from /feed', data);
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.log('getCardData failed, status: ', status, 'error: ', err);
-      }.bind(this)
-
-    });
-    */
+    request.get('/feed')
+      .end(function(err, res) {
+        if (err) { console.error( "Error:", err); }
+        that.setState({cardData: res.body});
+      });
   }
 
   render() {
-
     // console.log("client.js state:", this.state);
     return (
       <div>
@@ -236,7 +190,7 @@ class Layout extends React.Component {
           spicyInput={this.spicyInput.bind(this)}
 
           addCardSubmit={this.addCardSubmit.bind(this)}
-          photoAdd={this.state.photo ? null : this.photoAdd.bind(this)}
+          photoAdd={this.photoAdd.bind(this)}
           photoInput={this.photoInput.bind(this)}
           photo={this.state.photoFile ? this.state.photoFile.preview : null}
           showAdd={this.state.showAdd}
