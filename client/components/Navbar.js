@@ -28,6 +28,10 @@ export default class Navbar extends React.Component {
       .bind(this), 0);
   }
 
+  redirect(){
+    window.location.href = "http://localhost:4000/auth/logout";
+  }
+
   handleShowAdd() {
     this.props.stateToggle('showAdd');
   }
@@ -85,7 +89,10 @@ export default class Navbar extends React.Component {
           }{
             document.cookie.split("; ").indexOf("loggedIn=false")!==-1
              ? <a href="/" className="btn btn-primary" >Log in</a>
-             : <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
+             : <div>
+                 <RaisedButton onClick={this.redirect} label="LOGOUT" default={true} style={styles.button} />
+                 <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
+               </div>
           }
         </ToolbarGroup>
       </Toolbar>
