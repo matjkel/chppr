@@ -52,10 +52,13 @@ class Layout extends React.Component {
       dishDescription: '',
       dishPrice: '',
       dishRating: '',
+      vegClick: false,
+      gfClick: false,
+      spicyClick: false,
       photo: null,
       photoUrl: null,
       photoFile: null,
-      dishCat: null
+      dishCat: 999
     });
   }
 
@@ -156,7 +159,7 @@ class Layout extends React.Component {
             photo: null,
             photoUrl: null,
             photoFile: null,
-            dishCat: null
+            dishCat: 999
           });
           that.getCardData();
         });
