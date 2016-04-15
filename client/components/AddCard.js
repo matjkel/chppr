@@ -54,6 +54,7 @@ export default class AddCard extends React.Component {
 
     const styles = {
       checkbox: {
+        display: 'inline-block',
         textAlign: 'left',
         width: '150px',
         marginTop: 16
@@ -74,13 +75,12 @@ export default class AddCard extends React.Component {
         width: '100px',
         margin: '0 auto'
       },
-      boxes: {
-        width: '150px',
-        margin: '0 auto 30px auto'
-      },
       dropdown: {
         width: '200px',
         border: '2px solid gray'
+      },
+      button: {
+        margin: '20px 0'
       }
     };
 
@@ -88,85 +88,77 @@ export default class AddCard extends React.Component {
 
     return (
       <div style={styles.block}>
+        {!this.props.photo ? 
+        <TextField
+          onChange={this.handlePhoto.bind(this)}
+          floatingLabelText="Enter URL for your photo"
+        /> : null}
 
-        <div style={styles.boxes}>
-
+        <div style={styles.dropzone}>
           {!this.props.photo ? 
-          <TextField
-            onChange={this.handlePhoto.bind(this)}
-            floatingLabelText="Enter URL for your photo"
-          /> : null}
+          <Dropzone multiple={false} accept={'image/*'} onDrop={this.onDrop.bind(this)}>
+            <div style={styles.text}>Drag your photo here, or click to select a file to upload. 
+              <br/><br/>Note: This overwrites the URL option.</div>
+          </Dropzone> : null}
 
-          <div style={styles.dropzone}>
-            {!this.props.photo ? 
-            <Dropzone multiple={false} accept={'image/*'} onDrop={this.onDrop.bind(this)}>
-              <div style={styles.text}>Drag your photo here, or click to select a file to upload. 
-                <br/><br/>Note: This overwrites the URL option.</div>
-            </Dropzone> : null}
-
-            {this.props.photo ? <div><br/>Image Preview: <br/><img width='250' src={this.props.photo} /></div> : null}
-          </div>
-          <TextField
-            onChange={this.handleDishName.bind(this)}
-            floatingLabelText="Enter Name of Dish"
-          /><br/>
-          <TextField
-            onChange={this.handleRestaurantName.bind(this)}
-            floatingLabelText="Enter Name of Restaurant"
-          /><br/>
-          <TextField
-            onChange={this.handleDishPrice.bind(this)}
-            floatingLabelText="Enter Price of Dish"
-          /><br/>
-          <h4>Rate the Dish</h4>
-          <StarRatingComponent
-            name="rate1"
-            starCount={5}
-            value={0}
-            onStarClick={this.handleDishRating.bind(this)}
-          />
-                <br/>
-          <DropDownMenu style={styles.dropdown} value={this.props.dishCat} onChange={this.handleCatSelect.bind(this)}>
-              <MenuItem value={999} primaryText="Category"/>
-              <MenuItem value={null} primaryText="All"/>
-              <MenuItem value={1} primaryText="Mexican"/>
-              <MenuItem value={2} primaryText="American"/>
-              <MenuItem value={3} primaryText="Asian"/>
-              <MenuItem value={4} primaryText="Italian"/>
-              <MenuItem value={5} primaryText="Brunch"/>
-              <MenuItem value={6} primaryText="Greek"/>
-              <MenuItem value={7} primaryText="German"/>
-              <MenuItem value={8} primaryText="Brazilian"/>
-              <MenuItem value={9} primaryText="BBQ"/>
-              <MenuItem value={10} primaryText="Cuban"/>
-              <MenuItem value={11} primaryText="Cajun"/>
-              <MenuItem value={12} primaryText="Southern"/>
-              <MenuItem value={13} primaryText="Non-Alcoholic"/>
-              <MenuItem value={14} primaryText="Alcoholic"/>
-              <MenuItem value={15} primaryText="Desserts"/>
-          </DropDownMenu><br/>
-
-          <div style={styles.boxes}>
-            <Checkbox
-              onClick={this.handleVegClick.bind(this)}
-              label="Vegetarian"
-              style={styles.checkbox}
-            />
-            <Checkbox
-              label="Gluten-free"
-              onClick={this.handleGFClick.bind(this)}
-              style={styles.checkbox}
-            />
-            <Checkbox
-              label="Spicy"
-              onClick={this.handleSpicyClick.bind(this)}
-              style={styles.checkbox}
-            />
-          </div>
-          <RaisedButton style={{"marginBottom": "10px"}} onClick={this.handleSubmit.bind(this)} label="Submit" default={true} />
+          {this.props.photo ? <div><br/>Image Preview: <br/><img width='250' src={this.props.photo} /></div> : null}
         </div>
+        <TextField
+          onChange={this.handleDishName.bind(this)}
+          floatingLabelText="Enter Name of Dish"
+        /><br/>
+        <TextField
+          onChange={this.handleRestaurantName.bind(this)}
+          floatingLabelText="Enter Name of Restaurant"
+        /><br/>
+        <TextField
+          onChange={this.handleDishPrice.bind(this)}
+          floatingLabelText="Enter Price of Dish"
+        /><br/>
+        <h4>Rate the Dish</h4>
+        <StarRatingComponent
+          name="rate1"
+          starCount={5}
+          value={0}
+          onStarClick={this.handleDishRating.bind(this)}
+        />
+              <br/>
+        <DropDownMenu style={styles.dropdown} value={this.props.dishCat} onChange={this.handleCatSelect.bind(this)}>
+            <MenuItem value={999} primaryText="Category"/>
+            <MenuItem value={null} primaryText="All"/>
+            <MenuItem value={1} primaryText="Mexican"/>
+            <MenuItem value={2} primaryText="American"/>
+            <MenuItem value={3} primaryText="Asian"/>
+            <MenuItem value={4} primaryText="Italian"/>
+            <MenuItem value={5} primaryText="Brunch"/>
+            <MenuItem value={6} primaryText="Greek"/>
+            <MenuItem value={7} primaryText="German"/>
+            <MenuItem value={8} primaryText="Brazilian"/>
+            <MenuItem value={9} primaryText="BBQ"/>
+            <MenuItem value={10} primaryText="Cuban"/>
+            <MenuItem value={11} primaryText="Cajun"/>
+            <MenuItem value={12} primaryText="Southern"/>
+            <MenuItem value={13} primaryText="Non-Alcoholic"/>
+            <MenuItem value={14} primaryText="Alcoholic"/>
+            <MenuItem value={15} primaryText="Desserts"/>
+        </DropDownMenu><br/>
 
-     
+          <Checkbox
+            onClick={this.handleVegClick.bind(this)}
+            label="Vegetarian"
+            style={styles.checkbox}
+          />
+          <Checkbox
+            label="Gluten-free"
+            onClick={this.handleGFClick.bind(this)}
+            style={styles.checkbox}
+          />
+          <Checkbox
+            label="Spicy"
+            onClick={this.handleSpicyClick.bind(this)}
+            style={styles.checkbox}
+          /><br/>
+        <RaisedButton style={styles.button} onClick={this.handleSubmit.bind(this)} label="Submit" default={true} />
       </div>
     );
   }
