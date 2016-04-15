@@ -10,7 +10,8 @@ import ReactSlider from './react-slider';
 import {addCardStyles as styles} from '../inlineStyles';
 
   var slider = React.createFactory(ReactSlider);
-
+  var handleDishPrice;
+  var dishPrice = 5;
   function map(v, f, context) {
     return (v && v.map) ? v.map(f, context) : f.call(context, v, 0);
   }
@@ -22,7 +23,8 @@ import {addCardStyles as styles} from '../inlineStyles';
     },
     onChange: function (value) {
       this.setState({value: value});
-      console.log(value)
+      dishPrice = value;
+      handleDishPrice(dishPrice);
     },
     render: function () {
       return slider(
@@ -54,8 +56,9 @@ export default class AddCard extends React.Component {
   handleDishDescription(e) {
     this.props.dishDescriptionInput(e.target.value);
   }
-  handleDishPrice(e) {
-    this.props.dishPriceInput(e.target.value);
+  handleDishPrice(value) {
+    this.props.dishPriceInput(value);
+    
   }
   handleDishRating(e) {
     console.log("rating arguments", e);
@@ -82,6 +85,7 @@ export default class AddCard extends React.Component {
   }
 
   render() {
+    handleDishPrice = this.props.dishPriceInput;
     return (
       <div style={styles.block}>
         {!this.props.photo ? 

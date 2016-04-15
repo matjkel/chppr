@@ -34,7 +34,7 @@ export default class Navbar extends React.Component {
   render(){
     return (
       <Toolbar style={styles.toolbar}>
-        <ToolbarTitle style={styles.title} className="nav-title" text="YumSnap!" />
+        <ToolbarTitle style={styles.title} className="nav-title" text="Yumster" />
         <ToolbarGroup firstChild={true} float="left">
           <DropDownMenu style={styles.dropdown} value={this.props.category} onChange={this.handleCategory.bind(this)}>
             <MenuItem value={null} primaryText="All"/>
@@ -79,7 +79,7 @@ export default class Navbar extends React.Component {
         <ToolbarGroup float="right">
           {
             getCookieValue("profilePic")
-            ? <img style={{width:50, height:50}} src={getCookieValue("profilePic")} />
+            ? <img style={{width:50, height:50}} src={decodeURIComponent(getCookieValue("profilePic"))} />
             : null
           }{
             document.cookie.split("; ").indexOf("loggedIn=false")!==-1

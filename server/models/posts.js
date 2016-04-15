@@ -15,8 +15,11 @@ Post.create = function (incomingAttrs) {
 };
 
 Post.loader = function () {
-	return db.select('*').from('posts').orderBy('timestamp') //.limit(5).offset(5)
+  return db('posts').join('users', 'user_id', '=', 'users.uid')
+  .select('*').orderBy('timestamp')
     .then(function (result) {
+      var obj = {}
+      console.log("your data", result)
       // Prepare new user for outside world
       return result;
     });
