@@ -182,18 +182,6 @@ app.get('/auth/facebook/callback',
     res.redirect('/dashboard');
   });
 
-/////// NOTE TO FUTURE GROUPS //////
-/////// THIS ALMOST KINDA WORKS ////
-// routes.post('/upload', function (req, res) {
-// 	var file = req.body;
-//   console.log("req body:", file);
-//   var path = "./client/pictures/test4.jpg"
-//   fs.writeFile(path, file.preview, function(err) {
-//     if (err) {throw err};
-//     console.log('No errors!');
-//   })
-// })
-
 // Static assets (html, etc.)
 var assetFolder = Path.resolve(__dirname, '../client');
 routes.use(express.static(assetFolder));
