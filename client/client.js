@@ -147,6 +147,7 @@ class Layout extends React.Component {
             photoFile: null,
             dishCat: null
           });
+          that.getCardData();
         });
     }
   }

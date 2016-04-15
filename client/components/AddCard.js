@@ -118,7 +118,7 @@ export default class AddCard extends React.Component {
         /><br/><br/>
 
           <h4>Price of Dish</h4>
-          <Slider defaultValue={0} orientation='horizontal' max={30} withBars={true}/>
+          <Slider defaultValue={0} orientation='horizontal' max={50} withBars={true}/>
           <br/>
 
           <TextField
