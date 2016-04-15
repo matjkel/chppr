@@ -10,8 +10,6 @@ import StarRatingComponent from 'react-star-rating-component';
 export default class AddCard extends React.Component {
 
   onDrop (files) {
-    console.log('Received file(s): ', files);
-    console.log("this.props", this.props);
     this.props.photoInput(files);
   }
   handleDishName(e) {

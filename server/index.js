@@ -92,8 +92,6 @@ routes.post('/feed', function(req, res) {
 
 //upload a file
 routes.post('/upload', upload.any(), function(req, res, next){
-	console.log("req.body", req.body);
-	console.log("req.file", req.files);
 	res.end(req.files[0].filename);
 });
 

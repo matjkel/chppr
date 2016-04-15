@@ -125,7 +125,6 @@ class Layout extends React.Component {
     };
 
     if (this.state.dishRating && this.state.dishName && this.state.dishCat) {
-
       request.post('/feed')
         .send(newDish)
         .end(function(err, response) {
