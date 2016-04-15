@@ -23,7 +23,6 @@ import {addCardStyles as styles} from '../inlineStyles';
     onChange: function (value) {
       this.setState({value: value});
       globalValue = value;
-      console.log(value)
     },
     render: function () {
       return slider(
@@ -56,7 +55,6 @@ export default class AddCard extends React.Component {
     this.props.dishDescriptionInput(e.target.value);
   }
   handleDishRating(e) {
-    console.log("rating arguments", e);
     this.props.dishRatingInput(e);
   }
   handleVegClick() {
@@ -71,7 +69,10 @@ export default class AddCard extends React.Component {
   handleSubmit() {
     console.log(globalValue);
     this.props.dishPriceInput(globalValue);
-    this.props.addCardSubmit();
+    var component = this;
+    setTimeout(function(){
+      component.props.addCardSubmit();
+    },0);
   }
   handlePhoto(e) {
     this.props.photoAdd(e.target.value);
@@ -131,7 +132,6 @@ export default class AddCard extends React.Component {
          /><br/>
         <DropDownMenu style={styles.dropdown} value={this.props.dishCat} onChange={this.handleCatSelect.bind(this)}>
           <MenuItem value={999} primaryText="Category"/>
-          <MenuItem value={null} primaryText="All"/>
           <MenuItem value={1} primaryText="Mexican"/>
           <MenuItem value={2} primaryText="American"/>
           <MenuItem value={3} primaryText="Asian"/>

@@ -37,7 +37,7 @@ export default class DishCard extends React.Component {
               })}
             <CardText>
             <em> {this.props.data.name} says: </em><br/>
-              {this.props.data.dishDescription}
+              {this.props.data.dish_description}
             </CardText>
             <strong style={priceStyle}>
               ${this.props.data.price}
