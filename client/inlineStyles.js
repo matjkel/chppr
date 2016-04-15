@@ -41,6 +41,7 @@
       },
       toolbar: {
         color: "black",
+        backgroundColor: "transparent",
       },
       checkbox: {
         maxWidth: 150,

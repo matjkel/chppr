@@ -161,19 +161,28 @@ app.get('/auth/facebook', passport.authenticate('facebook'), function(req,res){
 	console.log("got to auth/facebook");
 });
 
+// if dont have required permissions add scope
+
 app.get('/auth/noAuth', function(req,res){
 	res.cookie("loggedIn","false");
 	res.redirect('/dashboard');
 })
 
+
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
   function(req, res) {
   	console.log("got to callback");
+  	// make a query to find un and profile pic 
+  	// and put in cookie to display
+
     // Successful authentication, redirect home.
     res.clearCookie('loggedIn');
     res.redirect('/dashboard');
   });
+// might have some useful stuff in req
+
+// idk how cookies work !!!
 
 /////// NOTE TO FUTURE GROUPS //////
 /////// THIS ALMOST KINDA WORKS ////

@@ -11,9 +11,13 @@ passport.serializeUser(function(user, done) {
   return done(null, user.id);
 });
 
+// find the id by the profile given to us
+
 passport.deserializeUser(function(id, done) {
   return done(null, thisUser);
 });
+
+// find the profile we passed by id given to us
 
 passport.use(new FacebookStrategy({
     clientID: authKeys.facebookClient,
@@ -26,6 +30,8 @@ passport.use(new FacebookStrategy({
     thisUser.id = 1;
     return done(null, thisUser);
   }
+  // done is where you give stuff to passport
+  // profile is where i find pic
 ));
 
 // passport.use(new TwitterStrategy({

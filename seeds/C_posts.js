@@ -17,7 +17,7 @@ exports.seed = function (knex, Promise) {
 			spicy: false,
 			rating: 5
 		}),
-		
+
 		knex('posts').insert({
 			user_id: 1,
 			category: 4,
@@ -98,7 +98,7 @@ exports.seed = function (knex, Promise) {
 		}),
 		knex('posts').insert({
 			user_id: 1,
-			category: 15,
+			category: 5,
 			timestamp: "02:37:00PM",
 			dish_name: "Brick Toast",
 			rest_name: "TeaHaus",

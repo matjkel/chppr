@@ -107,7 +107,7 @@ class Layout extends React.Component {
       // "dessert": this.state.dessertClick,
       "rating": this.state.dishRating
     };
-
+ console.log(newDish)
     var file = {
       photo: that.state.photo[0]
     };

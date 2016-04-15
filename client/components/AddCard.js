@@ -53,9 +53,9 @@ export default class AddCard extends React.Component {
 
     const styles = {
       checkbox: {
-        maxWidth: 150,
+        // maxWidth: 150,
         marginTop: 16,
-        // paddingLeft: 10,
+        display: 'inline',
       },
       dropzone: {
         // float: 'left'
@@ -126,6 +126,7 @@ export default class AddCard extends React.Component {
               <MenuItem value={14} primaryText="Alcoholic"/>
               <MenuItem value={15} primaryText="Desserts"/>
           </DropDownMenu><br/>
+          <div class="checkbox-inline">
           <Checkbox
             onClick={this.handleVegClick.bind(this)}
             label="Vegetarian"
@@ -140,7 +141,8 @@ export default class AddCard extends React.Component {
             label="Spicy"
             onClick={this.handleSpicyClick.bind(this)}
             style={styles.checkbox}
-          /><br/>
+          /></div>
+          <br/>
           <RaisedButton style={{"margin-bottom": "10px"}} onClick={this.handleSubmit.bind(this)} label="Submit" default={true} />
         </div>
 

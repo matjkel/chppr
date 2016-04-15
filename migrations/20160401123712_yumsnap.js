@@ -7,6 +7,8 @@ console.log('at start of migration');
 			table.increments('uid').primary();
 			table.string('username').unique();
 			table.string('password');
+			// todo: add profile pic
+			// todo: add profile name
 		}),
 		
 		//categories table
