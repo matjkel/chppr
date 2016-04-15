@@ -33,7 +33,7 @@ passport.use(new FacebookStrategy({
 ));
 
 module.exports = function get () {
-    return fbProfileInfo, twitProfileInfo;
+    return [fbProfileInfo, twitProfileInfo];
 
   }
 

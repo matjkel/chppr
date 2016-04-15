@@ -112,7 +112,7 @@ export default class AddCard extends React.Component {
         <StarRatingComponent
           name="rate1"
           starCount={5}
-          starColor="red"
+          starColor="#f48529"
           value={0}
           onStarClick={this.handleDishRating.bind(this)}
         /><br/><br/>

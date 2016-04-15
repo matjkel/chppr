@@ -33,7 +33,7 @@
 
     export const styles = {
       title: {
-        color: "red",
+        color: "#f48529",
         minWidth: 160,
         maxWidth: 160,
         fontWeight: 700,
@@ -48,6 +48,7 @@
       },
       toolbar: {
         color: "black",
+        backgroundColor: "transparent",
       },
       checkbox: {
         maxWidth: 150,

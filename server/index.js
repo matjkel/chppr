@@ -132,9 +132,9 @@ app.get('/auth/facebook/callback',
   	console.log("got to callback");
   	var info = getInfo();
 
- console.log(typeof info.pic)
-  	res.cookie("profilePic", info.pic)
-  	res.cookie("profileName", info.name)
+ //console.log(typeof info.pic)
+  	res.cookie("profilePic", info[0].pic)
+  	res.cookie("profileName", info[0].name)
 
     // Successful authentication, redirect home.
     res.clearCookie('loggedIn');
@@ -157,8 +157,8 @@ app.get('/auth/twitter/callback',
   	var info = getInfo();
 
  // console.log(typeof info.pic)
-  	res.cookie("profilePic", info.pic)
-  	res.cookie("profileName", info.name)
+  	res.cookie("profilePic", info[1].pic)
+  	res.cookie("profileName", info[1].name)
 
   	res.clearCookie('loggedIn');
     res.redirect('/dashboard');
