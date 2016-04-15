@@ -6,7 +6,7 @@ import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
-import {cardStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} from '../inlineStyles';
+import {cardStyle, priceStyle, imageStyle, cardMediaStyle, cardWrapperStyle, buttonStyle} from '../inlineStyles';
 
 export default class DishCard extends React.Component {
   render() {
@@ -15,30 +15,25 @@ export default class DishCard extends React.Component {
         <Card
           className=""
           style={cardStyle}>
-          <CardHeader
+          {/*<CardHeader
             title={"User Number "+ this.props.data.user_id}
             subtitle={"Category Number "+ this.props.data.category}
             avatar="http://lorempixel.com/200/200/"
-          />
+          />*/}
           <CardMedia style={cardMediaStyle}>
-              <img style={imageStyle} src={this.props.data.picture_path} />
+            <img style={imageStyle} src={this.props.data.picture_path} />
           </CardMedia>
           <CardTitle
             title={this.props.data.dish_name}
             subtitle={this.props.data.rest_name}
           />
           <row>
-            <strong style={{clear: "none", float: "right"}}>
+            <strong style={priceStyle}>
               ${this.props.data.price}
             </strong>
               {Array.apply(null, new Array(this.props.data.rating)).map(function(cur, index){
                 return <img key={index} style={{height:30, width:30}} src="/icons/star.png"/>
               })}
-            <span style={{float: "left"}}>
-              {this.props.data.spicy ? " 🌶" : ""}
-              {this.props.data.gluten_free ? " 🚫🍞" : ""}
-              {this.props.data.veggie ? " 🌽" : ""}
-            </span>
           </row>
         </Card>
       </div>

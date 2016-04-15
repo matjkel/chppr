@@ -35,25 +35,25 @@ export default class Navbar extends React.Component {
   render(){
     return (
       <Toolbar style={styles.toolbar}>
-        <ToolbarTitle style={styles.title} text="YumSnap!" />
+        <ToolbarTitle style={styles.title} className="nav-title" text="YumSnap!" />
         <ToolbarGroup firstChild={true} float="left">
           <DropDownMenu style={styles.dropdown} value={this.props.category} onChange={this.handleCategory.bind(this)}>
-              <MenuItem value={null} primaryText="All"/>
-              <MenuItem value={1} primaryText="Mexican"/>
-              <MenuItem value={2} primaryText="American"/>
-              <MenuItem value={3} primaryText="Asian"/>
-              <MenuItem value={4} primaryText="Italian"/>
-              <MenuItem value={5} primaryText="Brunch"/>
-              <MenuItem value={6} primaryText="Greek"/>
-              <MenuItem value={7} primaryText="German"/>
-              <MenuItem value={8} primaryText="Brazilian"/>
-              <MenuItem value={9} primaryText="BBQ"/>
-              <MenuItem value={10} primaryText="Cuban"/>
-              <MenuItem value={11} primaryText="Cajun"/>
-              <MenuItem value={12} primaryText="Southern"/>
-              <MenuItem value={13} primaryText="Non-Alcoholic"/>
-              <MenuItem value={14} primaryText="Alcoholic"/>
-              <MenuItem value={15} primaryText="Desserts"/>
+            <MenuItem value={null} primaryText="All"/>
+            <MenuItem value={1} primaryText="Mexican"/>
+            <MenuItem value={2} primaryText="American"/>
+            <MenuItem value={3} primaryText="Asian"/>
+            <MenuItem value={4} primaryText="Italian"/>
+            <MenuItem value={5} primaryText="Brunch"/>
+            <MenuItem value={6} primaryText="Greek"/>
+            <MenuItem value={7} primaryText="German"/>
+            <MenuItem value={8} primaryText="Brazilian"/>
+            <MenuItem value={9} primaryText="BBQ"/>
+            <MenuItem value={10} primaryText="Cuban"/>
+            <MenuItem value={11} primaryText="Cajun"/>
+            <MenuItem value={12} primaryText="Southern"/>
+            <MenuItem value={13} primaryText="Non-Alcoholic"/>
+            <MenuItem value={14} primaryText="Alcoholic"/>
+            <MenuItem value={15} primaryText="Desserts"/>
           </DropDownMenu>
           <Checkbox
             value="veg"
@@ -75,22 +75,21 @@ export default class Navbar extends React.Component {
           />
         </ToolbarGroup>
         <ToolbarGroup float="right">
-
-        {
-          getCookieValue("profilePic") !== undefined
-          ? <img style={{width:50, height:50}} src={getCookieValue("profilePic")} />
-          : null
-        }
           {
-          document.cookie.split("; ").indexOf("loggedIn=false")!==-1
-           ? <a href="/" className="btn btn-primary" >Log in</a>
-           : <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
+            getCookieValue("profilePic")
+            ? <img style={{width:50, height:50}} src={getCookieValue("profilePic")} />
+            : null
+          }{
+            document.cookie.split("; ").indexOf("loggedIn=false")!==-1
+             ? <a href="/" className="btn btn-primary" >Log in</a>
+             : <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
           }
         </ToolbarGroup>
       </Toolbar>
     )
   }
 }
+
 
 function getCookieValue(a, b) {
     b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');

@@ -1,13 +1,19 @@
     export const cardStyle = {
-      padding: "30px",
-      height: "650px"
+      padding: "0px",
+      height: "550px"
+    };
+
+    export const priceStyle = {
+      clear: "none", 
+      float: "right",
+      color: "gray",
+      fontSize: "24",
+      marginRight: 20
     };
 
     export const imageStyle = {
-      width: "100%",
-      // width: "auto"
       maxHeight: "360px",
-      maxWidth: "360px",
+      width: "360px",
     };
 
     export const cardMediaStyle = {
