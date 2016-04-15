@@ -46,6 +46,20 @@ class Layout extends React.Component {
 
   stateToggle(event) {
     this.setState({[event]: !this.state[event]});
+    this.setState({
+      dishName: '',
+      restaurantName: '',
+      dishDescription: '',
+      dishPrice: '',
+      dishRating: '',
+      vegClick: false,
+      gfClick: false,
+      spicyClick: false,
+      photo: null,
+      photoUrl: null,
+      photoFile: null,
+      dishCat: 999
+    });
   }
 
   categorySelect(category) {
@@ -145,7 +159,7 @@ class Layout extends React.Component {
             photo: null,
             photoUrl: null,
             photoFile: null,
-            dishCat: null
+            dishCat: 999
           });
           that.getCardData();
         });
