@@ -36,8 +36,8 @@ export default class DishCard extends React.Component {
                 return <img key={index} style={{height:30, width:30}} src="/icons/star.png"/>
               })}
             <CardText>
-            <em> {this.props.data.name} says: </em><br/>
-              {this.props.data.dish_description}
+            <em> {this.props.data.name} says:</em><br/>
+             "{this.props.data.dish_description}"
             </CardText>
             <strong style={priceStyle}>
               ${this.props.data.price}

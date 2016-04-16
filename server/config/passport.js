@@ -4,8 +4,8 @@ var InstagramStrategy = require('passport-instagram').Strategy;
 var TwitterStrategy   = require('passport-twitter').Strategy;
 var authKeys = require('./auth');
 
-var profileInfo = {}
-
+var fbProfileInfo = {}
+var twitProfileInfo = {}
 var thisUser;
 var FacebookStrategy  = require('passport-facebook').Strategy;
 passport.serializeUser(function(user, done) {
@@ -24,8 +24,8 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log("in construction:", profile.photos[0].value, profile.displayName);
-    profileInfo.pic = profile.photos[0].value;
-    profileInfo.name = profile.displayName;
+    fbProfileInfo.pic = profile.photos[0].value;
+    fbProfileInfo.name = profile.displayName;
     thisUser = profile;
     thisUser.id = 1;
     return done(null, thisUser);
@@ -33,21 +33,25 @@ passport.use(new FacebookStrategy({
 ));
 
 module.exports = function get () {
-    return profileInfo;
+    return [fbProfileInfo, twitProfileInfo];
+
   }
 
-// passport.use(new TwitterStrategy({
-//     consumerKey: TWITTER_CONSUMER_KEY,
-//     consumerSecret: TWITTER_CONSUMER_SECRET,
-//     callbackURL: "http://localhost:4000/auth/twitter/callback"
-//   },
-//   function(accessToken, tokenSecret, profile, done) {
-//     console.log("in construction:", arguments);
-//     User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-//       return done(err, user);
-//     });
-//   }
-// ));
+passport.use(new TwitterStrategy({
+    consumerKey: authKeys.twitterClient,
+    consumerSecret: authKeys.twitterSecret,
+    callbackURL: "http://localhost:4000/auth/twitter/callback"
+  },
+  function(accessToken, tokenSecret, profile, done) {
+    console.log("in construction:", arguments);
+    twitProfileInfo.pic = profile.photos[0].value;
+    twitProfileInfo.name = profile.displayName;
+    thisUser = profile;
+    thisUser.id =1;
+    // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+    return done(null, thisUser);
+    }
+  ));
 
 // passport.use(new InstagramStrategy({
 //     clientID: INSTAGRAM_CLIENT_ID,

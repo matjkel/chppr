@@ -28,8 +28,8 @@ export default class Navbar extends React.Component {
       .bind(this), 0);
   }
 
-  redirect(){
-    window.location.href = "http://localhost:4000/auth/logout";
+  redirect(address){
+    window.location.href = address;
   }
 
   handleShowAdd() {
@@ -88,9 +88,9 @@ export default class Navbar extends React.Component {
             : null
           }{
             document.cookie.split("; ").indexOf("loggedIn=false")!==-1
-             ? <a href="/" className="btn btn-primary" >Log in</a>
+             ? <RaisedButton onClick={this.redirect.bind(this, "http://localhost:4000/")} label="LOGIN" default={true} style={styles.button} /> 
              : <div>
-                 <RaisedButton onClick={this.redirect} label="LOGOUT" default={true} style={styles.button} />
+                 <RaisedButton onClick={this.redirect.bind(this, "http://localhost:4000/auth/logout")} label="LOGOUT" default={true} style={styles.button} />
                  <RaisedButton onClick={this.handleShowAdd.bind(this)} label={!this.props.showAdd ? "ADD DISH" : "CANCEL"} default={true} style={styles.button} />
                </div>
           }
