@@ -1,7 +1,7 @@
 {
-  "name": "yumsnap",
+  "name": "Yumster",
   "version": "1.0.0",
-  "description": "Twitter meets Yelp for Food",
+  "description": "Twitter meets Yelp, for Food",
   "main": "webpack.config.js",
   "scripts": {
     "start": "nodemon server/ --ignore client/",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chppr/chppr.git"
+    "url": "git+https://github.com/jamzz/chppr.git"
   },
-  "author": "chppr",
+  "author": "jamzz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chppr/chppr/issues"
+    "url": "https://github.com/jamzz/chppr/issues"
   },
-  "homepage": "https://github.com/chppr/chppr#readme",
+  "homepage": "https://github.com/jamzz/chppr#readme",
   "dependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.7.4",
