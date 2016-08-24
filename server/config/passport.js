@@ -2,12 +2,22 @@ var passport = require('passport');
 var FacebookStrategy  = require('passport-facebook').Strategy;
 var InstagramStrategy = require('passport-instagram').Strategy;
 var TwitterStrategy   = require('passport-twitter').Strategy;
-var authKeys = require('./auth');
+
+
+if (!process.env.NODE_ENV !== 'production'){
+  var authKeys = require('./auth');
+}
+
+var FacebookID = process.env.FACEBOOK_ID || authKeys.facebookClient;
+var FacebookSecret = process.env.FACEBOOK_SECRET || authKeys.facebookSecret;
+var TwitterID = process.env.TWITTER_ID || authkeys.twitterClient;
+var TwitterSecret = process.env.TWITTER_SECRET || authKeys.twitterSecret;
 
 var fbProfileInfo = {}
 var twitProfileInfo = {}
 var thisUser;
 var FacebookStrategy  = require('passport-facebook').Strategy;
+
 passport.serializeUser(function(user, done) {
   return done(null, user.id);
 });
@@ -17,9 +27,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new FacebookStrategy({
-    clientID: authKeys.facebookClient,
-    clientSecret: authKeys.facebookSecret,
-    callbackURL: "http://localhost:4000/auth/facebook/callback",
+    clientID: FacebookID,
+    clientSecret: FacebookSecret,
+    callbackURL: '/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'picture.type(large)']
   },
   function(accessToken, refreshToken, profile, done) {
@@ -38,9 +48,9 @@ module.exports = function get () {
   }
 
 passport.use(new TwitterStrategy({
-    consumerKey: authKeys.twitterClient,
-    consumerSecret: authKeys.twitterSecret,
-    callbackURL: "http://localhost:4000/auth/twitter/callback"
+    consumerKey: TwitterID,
+    consumerSecret: TwitterSecret,
+    callbackURL: '/auth/twitter/callback'
   },
   function(accessToken, tokenSecret, profile, done) {
     console.log("in construction:", arguments);
