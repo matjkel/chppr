@@ -1,4 +1,4 @@
-# YumSnap!
+# Yumster!
 
 ## Database Setup
 
