@@ -34,7 +34,7 @@ class Layout extends React.Component {
       gfClick: false,
       spicyClick: false,
       bevClick: false,
-      dessertClick: false, 
+      dessertClick: false,
       photo: null,
       photoUrl: null,
       photoFile: null,
@@ -133,8 +133,6 @@ class Layout extends React.Component {
       "spicy": this.state.spicyClick,
       "dish_description": this.state.dishDescription,
       "rating": this.state.dishRating
-      // "bev": this.state.bevClick,
-      // "dessert": this.state.dessertClick,
     };
 
     if (this.state.dishRating && this.state.dishName && this.state.dishCat) {
